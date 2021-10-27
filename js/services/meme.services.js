@@ -107,7 +107,7 @@ var gMeme = {
             size: 30,
             align: 'left',
             color: 'white',
-            pos: { x: 1, y: 4 }
+            pos: { x: 250, y: 50 }
         }
     ]
 }
@@ -124,7 +124,7 @@ function getImgById(imgId) {
 
 function updateGmemeId(id) {
     gMeme.selectedImgId = id;
-    console.log(gMeme);
+    // console.log(gMeme);
 }
 
 function updateCurrentgMeme(id) {
@@ -148,4 +148,36 @@ function increaseTextSize() {
 
 function decreaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size--;
+}
+
+function changeTextPos(x = 250, y = 50) {
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
+    gMeme.lines[gMeme.selectedLineIdx].pos.x = y;
+}
+
+function moveTextUp() {
+    gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
+}
+function moveTextDown() {
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
+}
+
+function createNewLine() {
+    if (gMeme.lines.length >= 2) return;  //WATCHOUT
+    var newLine = {
+        txt: 'I never eat Falafel',
+        size: 30,
+        align: 'left',
+        color: 'white',
+        pos: { x: 250, y: 450 }
+    }
+    // if (gMeme.lines == 1) {
+    gMeme.lines.push(newLine);
+    // }
+}
+
+function setCurrLine() {
+    gMeme.selectedLineIdx++;
+    if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
+    console.log('Line Selected: ', gMeme.selectedLineIdx);
 }

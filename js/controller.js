@@ -48,10 +48,10 @@ function clearCanvas() {
     // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
 }
 
-function initialText() {
+function initialText() { // need to fix it so it draws other lines other than the first
     var meme = getMeme()
-    var x = gElCanvas.width * 0.5;
-    var y = gElCanvas.height * 0.1;
+    var x = gMeme.lines[gMeme.selectedLineIdx].pos.x;
+    var y = gMeme.lines[gMeme.selectedLineIdx].pos.y;
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = `${meme.lines[meme.selectedLineIdx].color}`;
@@ -75,4 +75,20 @@ function onChangeTextSize(isIncrease) {
     if (isIncrease) increaseTextSize();
     else decreaseTextSize();
     renderText();
+}
+
+function onMoveLine(isUp) {
+    if (isUp) moveTextUp();
+    else moveTextDown();
+    renderText();
+}
+
+function onNewLineInput() {
+    document.querySelector('.lower-text').style.visibility = 'visible';
+    createNewLine(); // WATCHOUT need to remove it from here later
+    setCurrLine(); // WATCHOUT need to remove it from here later
+}
+
+function onSwitchLine() {
+    setCurrLine(); // WATCHOUT need to remove it from here later
 }
