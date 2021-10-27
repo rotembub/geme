@@ -107,6 +107,7 @@ var gMeme = {
             size: 30,
             align: 'left',
             color: 'white',
+            font: 'Impact',
             pos: { x: 250, y: 50 },
         }
     ]
@@ -153,9 +154,12 @@ function decreaseTextSize() {
     setMemeLinesBorders();
 }
 
-function changeTextPos(x = 250, y = 50) {
+// (x = gMeme.lines[gMeme.selectedLineIdx].pos.x, y = gMeme.lines[gMeme.selectedLineIdx].pos.y)
+
+function changeTextPos(x, y = gMeme.lines[gMeme.selectedLineIdx].pos.y) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
-    gMeme.lines[gMeme.selectedLineIdx].pos.x = y;
+    gMeme.lines[gMeme.selectedLineIdx].pos.y = y;
+    // console.log('hi', x ,gMeme.lines[gMeme.selectedLineIdx].pos.x);
     setMemeLinesBorders();
 }
 
@@ -175,7 +179,8 @@ function createNewLine() {
         size: 30,
         align: 'left',
         color: 'white',
-        pos: { x: 250, y: 450 },
+        font: 'Impact',
+        pos: { x: 150, y: 450 },
     }
     // if (gMeme.lines === 1) {
     gMeme.lines.push(newLine);
@@ -189,6 +194,17 @@ function setCurrLine() {
     console.log('Line Selected: ', gMeme.selectedLineIdx);
 }
 
+function updateLineFont(font) {
+    gMeme.lines[gMeme.selectedLineIdx].font = font;
+}
+
+function updateLineColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].color = color;
+}
+
+
+
+
 function isLineClicked(pos) {
     // var lineBorder = 
 }
@@ -196,7 +212,12 @@ function isLineClicked(pos) {
 //prototype:
 function setMemeLinesBorders() {
     gMeme.lines.forEach(line => {
-        line.border = { width: line.pos.x + line.size + line.txt.length, height: line.size, xStart: line.pos.x, yStart: line.pos.y - line.size };
+        line.border = {
+            xStart: line.pos.x - line.txt.length * 3,
+            yStart: line.pos.y - line.size,
+            xEnd: line.pos.x + line.txt.length * 3,
+            yEnd: line.pos.y + line.size,
+        };
     });
 }
 

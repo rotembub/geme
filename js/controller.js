@@ -2,6 +2,7 @@
 
 var gElCanvas;
 var gCtx;
+var gAlign = 'center';
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
@@ -131,18 +132,42 @@ function onSwitchLine() {
     setCurrLine(); // WATCHOUT need to remove it from here later
 }
 
+function onSetFont(font) {
+    updateLineFont(font);
+    renderText();
+}
+function onSetColor(color) {
+    updateLineColor(color);
+    renderText();
+}
+function onAlignRight() {
+    gAlign = 'left';
+    renderText();
+}
+function onAlignLeft() {
+    gAlign = 'right';
+    renderText();
+}
+function onAlignCenter() {
+    gAlign = 'center';
+    renderText();
+}
+
+
 // prototype:
 function initialText() {
     var meme = getMeme();
     for (var i = 0; i < meme.lines.length; i++) {
-        // meme.lines.forEach(line => {
-        // console.log(meme.lines.indexOf(line));
+        // console.log(gCtx.measureText(meme.lines[i].txt).width);
         var x = gMeme.lines[i].pos.x;
         var y = gMeme.lines[i].pos.y;
+        gCtx.direction = 'ltr';
+        gCtx.textBaseline = 'middle';
+        gCtx.textAlign = gAlign;
         gCtx.lineWidth = 2;
         gCtx.strokeStyle = 'black';
         gCtx.fillStyle = `${meme.lines[i].color}`;
-        gCtx.font = `${meme.lines[i].size}px Impact`;
+        gCtx.font = `${meme.lines[i].size}px ${meme.lines[i].font}`;
         gCtx.fillText(meme.lines[i].txt, x, y);
         gCtx.strokeText(meme.lines[i].txt, x, y);
         // });
@@ -155,11 +180,11 @@ function drawLineBorders() {
     gMeme.lines[gMeme.selectedLineIdx]
     var x = gMeme.lines[gMeme.selectedLineIdx].border.xStart;
     var y = gMeme.lines[gMeme.selectedLineIdx].border.yStart;
-    var width = gMeme.lines[gMeme.selectedLineIdx].border.width;
-    var height = gMeme.lines[gMeme.selectedLineIdx].border.height;
-    // console.log(x, y, maxX, maxY);
+    var width = gMeme.lines[gMeme.selectedLineIdx].border.xEnd - x;
+    var height = gMeme.lines[gMeme.selectedLineIdx].border.yEnd - y;
     gCtx.beginPath();
     gCtx.rect(x, y, width, height);
     gCtx.strokeStyle = 'white';
     gCtx.stroke();
 }
+
