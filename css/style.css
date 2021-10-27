@@ -6,7 +6,9 @@
 
 
 .container{
+    text-align: center;
     display: grid;
+    justify-items: center;
     grid-template-rows: 200px 100px 1fr 200px  ;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -18,17 +20,37 @@
 header{
     grid-area: header;
     height: 200px;
+    width: 100%;
+    background-color: slategrey;
 }
 .search-bar{
+    width: 100%;
     grid-area: search-bar;
+    background-color: springgreen;
 }
 
 main{
     grid-area: main;
-    background-color:seagreen;
+
 }
+.img-gallery{
+    display: grid;
+    justify-content: center;
+    row-gap: 20px;
+    column-gap: 20px;
+    grid-template-rows: repeat(4,200px);  ;
+    grid-template-columns: repeat(6,200px);
+}
+.img-gallery>*{
+    width: 100%;
+    grid-row: span 1;
+    grid-column: span 1;
+}
+
 footer{
+    width: 100%;
     grid-area: footer;
+    background-color: slategray;
 }
 
 
