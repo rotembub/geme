@@ -21,25 +21,27 @@ var gElCanvas;
 var gCtx;
 
 function init() {
+    RenderImages();
     gElCanvas = document.getElementById('canvas');
     gCtx = gElCanvas.getContext('2d');
 }
 
 
-function loadImages() {
+function RenderImages() {
+    var images = getImgs();
+    console.log(images);
     var elGallery = document.querySelector('.img-gallery');
-    var strHtml = '';
-
+    var strHtml = images.map(img => {
+        return `<img src="${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`
+    })
+    elGallery.innerHTML = strHtml.join('');
 }
 
-function openEditor(imgSrc) {
-    console.log(imgSrc);
+function openEditor(id) {
+    console.log(id);
+    updateCurrentgMeme(id);
     var elEditor = document.querySelector('.meme-editor');
-    // var elMemeImg = document.querySelector('.meme-editor img');
-    // console.log(elEditor);
-    // console.log(elMemeImg);
-    // elMemeImg.src = imgSrc;
-    drawImg(imgSrc);
+    drawImg();
     elEditor.classList.add('opened');
 
 
@@ -50,12 +52,30 @@ function closeEditor(elEditor) {
     elEditor.classList.remove('opened');
 }
 
-function drawImg(imgSrc) {
+function drawImg() {
+    var imgSource = getgMemeImg();
     var img = new Image();
-    img.src = imgSrc;
+    img.src = imgSource;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+        addText();
     };
 }
 
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+    // You may clear part of the canvas
+    // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
+}
 
+function addText() {
+    var meme = getMeme()
+    var x = gElCanvas.width *0.5;
+    var y = gElCanvas.height * 0.1;
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = `${meme.lines[meme.selectedLineIdx].color}`;
+    gCtx.font = `${meme.lines[meme.selectedLineIdx].size}px Impact`;
+    gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
+    gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
+}

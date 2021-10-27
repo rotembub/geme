@@ -16,22 +16,19 @@
 
     <main>
         <div class="img-gallery">
-            <img src="/meme-imgs (square)/1.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/2.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/3.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/4.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/5.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/6.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/7.jpg" onclick="openEditor(this.src)" alt="">
-            <img src="/meme-imgs (square)/8.jpg" onclick="openEditor(this.src)" alt="">
+            <!-- <img src="/meme-imgs (square)/1.jpg" onclick="openEditor(this.src , this.name)" alt="" name="1">
+            <img src="/meme-imgs (square)/2.jpg" onclick="openEditor(this.src)" alt=""> -->
         </div>
 
     </main>
 
     <section class="meme-editor">
         <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
-        <img src="" alt="">
         <canvas id="canvas" height="500" width="500"></canvas>
+        <div class="control-box">
+            <input type="text" name="upper-text" placeholder="Upper Text Here">
+            <input type="text" name="lower-text" placeholder="Lower Text Here">
+        </div>
     </section>
 
 
@@ -39,6 +36,7 @@
     <footer>footer</footer>
 
     <script src="js/services/meme.services.js"></script>
+    <script src="js/controller.js"></script>
     <script src="js/main.js"></script>
 </body>
 
