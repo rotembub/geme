@@ -3,6 +3,7 @@
 var gElCanvas;
 var gCtx;
 var gAlign = 'center';
+var gIsClicked = false;
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
@@ -21,15 +22,21 @@ function addMouseListeners() {
 
 function onDown(event) {
     var pos = getEvPos(event);
-    isLineClicked()
+    console.log(pos);
+    gIsClicked = isLineClicked(pos);
+    if (gIsClicked) markSelected();
 }
 
 function onMove(event) {
     var pos = getEvPos(event);
-
+    if (gIsClicked) {
+        changeTextPos(pos.x, pos.y);
+        renderText();
+    }
 }
 
 function onUp(event) {
+    gIsClicked = false;
     var pos = getEvPos(event);
 
 }
@@ -39,7 +46,7 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY
     }
-    console.log(pos);
+    // console.log(pos);
     return pos
 }
 
@@ -130,6 +137,8 @@ function onNewLineInput() {
 
 function onSwitchLine() {
     setCurrLine(); // WATCHOUT need to remove it from here later
+    markSelected();
+    // drawLineBorders();
 }
 
 function onSetFont(font) {
@@ -141,15 +150,18 @@ function onSetColor(color) {
     renderText();
 }
 function onAlignRight() {
-    gAlign = 'left';
+    gAlign = 'right';
+    alignLines(gAlign);
     renderText();
 }
 function onAlignLeft() {
-    gAlign = 'right';
+    gAlign = 'left';
+    alignLines(gAlign);
     renderText();
 }
 function onAlignCenter() {
     gAlign = 'center';
+    alignLines(gAlign);
     renderText();
 }
 
@@ -159,18 +171,18 @@ function initialText() {
     var meme = getMeme();
     for (var i = 0; i < meme.lines.length; i++) {
         // console.log(gCtx.measureText(meme.lines[i].txt).width);
+        setLineLength(i, gCtx.measureText(meme.lines[i].txt).width);
         var x = gMeme.lines[i].pos.x;
         var y = gMeme.lines[i].pos.y;
-        gCtx.direction = 'ltr';
-        gCtx.textBaseline = 'middle';
-        gCtx.textAlign = gAlign;
+        // gCtx.direction = 'ltr';
+        // gCtx.textBaseline = 'middle';
+        // gCtx.textAlign = gAlign;
         gCtx.lineWidth = 2;
         gCtx.strokeStyle = 'black';
         gCtx.fillStyle = `${meme.lines[i].color}`;
         gCtx.font = `${meme.lines[i].size}px ${meme.lines[i].font}`;
         gCtx.fillText(meme.lines[i].txt, x, y);
         gCtx.strokeText(meme.lines[i].txt, x, y);
-        // });
     }
 }
 
@@ -188,3 +200,17 @@ function drawLineBorders() {
     gCtx.stroke();
 }
 
+// not looking good gotta fix it if there is time
+function markSelected() {
+    var meme = getMeme()
+    var x = gMeme.lines[gMeme.selectedLineIdx].pos.x;
+    var y = gMeme.lines[gMeme.selectedLineIdx].pos.y;
+    gCtx.shadowColor = "black";
+    gCtx.shadowBlur = 50;
+    gCtx.lineWidth = 2;
+    gCtx.strokeStyle = 'black';
+    gCtx.fillStyle = `${meme.lines[meme.selectedLineIdx].color}`;
+    gCtx.font = `${meme.lines[meme.selectedLineIdx].size}px Impact`;
+    gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
+    gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
+}

@@ -2,8 +2,6 @@
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
 
-
-// var gImgs = [{ id: 1, url: 'img/popo.jpg', keywords: ['happy'] }];
 var gImgs = [
     {
         id: 1,
@@ -109,6 +107,7 @@ var gMeme = {
             color: 'white',
             font: 'Impact',
             pos: { x: 250, y: 50 },
+            lineLength: null,
         }
     ]
 }
@@ -173,19 +172,20 @@ function moveTextDown() {
 }
 
 function createNewLine() {
-    if (gMeme.lines.length >= 2) return;  //WATCHOUT
     var newLine = {
         txt: 'I never eat Falafel',
         size: 30,
         align: 'left',
         color: 'white',
         font: 'Impact',
-        pos: { x: 150, y: 450 },
+        pos: { x: 250, y: 450 },
+        lineLength: null,
     }
-    // if (gMeme.lines === 1) {
+    if (gMeme.lines.length >= 2) {
+        newLine.pos.y = 250;
+    }
     gMeme.lines.push(newLine);
     setMemeLinesBorders();
-    // }
 }
 
 function setCurrLine() {
@@ -202,14 +202,27 @@ function updateLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
 
-
-
-
-function isLineClicked(pos) {
-    // var lineBorder = 
+function setLineLength(lineIdx, length) {
+    gMeme.lines[lineIdx].lineLength = length;
 }
 
-//prototype:
+function isLineClicked(pos) {
+    for (var i = 0; i < gMeme.lines.length; i++) {
+        var currLine = gMeme.lines[i];
+        console.log(currLine.lineLength);
+        console.log(currLine.pos.x);
+        if (pos.x >= currLine.pos.x && pos.x < currLine.pos.x + currLine.lineLength && pos.y >= currLine.pos.y - currLine.size && pos.y <= currLine.pos.y) {
+            console.log(true);
+            gMeme.selectedLineIdx = i; // WATCHOUT
+            return true;
+        } else {
+            console.log(false);
+        }
+    }
+    return false;
+}
+
+//prototype :
 function setMemeLinesBorders() {
     gMeme.lines.forEach(line => {
         line.border = {
@@ -221,3 +234,24 @@ function setMemeLinesBorders() {
     });
 }
 
+
+// i could perhaps make it prettier get back to it later:
+function alignLines(side) {
+    var xLocation;
+    switch (side) {
+        case 'left':
+            xLocation = 20;
+            break;
+        case 'right':
+            xLocation = 500;
+            break;
+        case 'center':
+            xLocation = 250;
+            break;
+    }
+    gMeme.lines.forEach(line => {
+        line.pos.x = xLocation;
+        if (side === 'right') line.pos.x = xLocation - line.lineLength;
+        if (side === 'center') line.pos.x = xLocation - line.lineLength / 2;
+    });
+}
