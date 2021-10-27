@@ -48,17 +48,19 @@ function clearCanvas() {
     // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
 }
 
-function initialText() { // need to fix it so it draws other lines other than the first
-    var meme = getMeme()
-    var x = gMeme.lines[gMeme.selectedLineIdx].pos.x;
-    var y = gMeme.lines[gMeme.selectedLineIdx].pos.y;
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = `${meme.lines[meme.selectedLineIdx].color}`;
-    gCtx.font = `${meme.lines[meme.selectedLineIdx].size}px Impact`;
-    gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
-    gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
-}
+// ORIGINAL:
+
+// function initialText() { // need to fix it so it draws other lines other than the first
+//     var meme = getMeme()
+//     var x = gMeme.lines[gMeme.selectedLineIdx].pos.x;
+//     var y = gMeme.lines[gMeme.selectedLineIdx].pos.y;
+//     gCtx.lineWidth = 2;
+//     gCtx.strokeStyle = 'black';
+//     gCtx.fillStyle = `${meme.lines[meme.selectedLineIdx].color}`;
+//     gCtx.font = `${meme.lines[meme.selectedLineIdx].size}px Impact`;
+//     gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
+//     gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
+// }
 
 function onUpdateText(val) {
     updateMemeText(val);
@@ -92,3 +94,23 @@ function onNewLineInput() {
 function onSwitchLine() {
     setCurrLine(); // WATCHOUT need to remove it from here later
 }
+
+// prototype:
+function initialText() {
+    var meme = getMeme();
+    for (var i = 0; i < meme.lines.length; i++) {
+        // meme.lines.forEach(line => {
+        // console.log(meme.lines.indexOf(line));
+        var x = gMeme.lines[i].pos.x;
+        var y = gMeme.lines[i].pos.y;
+        gCtx.lineWidth = 2;
+        gCtx.strokeStyle = 'black';
+        gCtx.fillStyle = `${meme.lines[i].color}`;
+        gCtx.font = `${meme.lines[i].size}px Impact`;
+        gCtx.fillText(meme.lines[i].txt, x, y);
+        gCtx.strokeText(meme.lines[i].txt, x, y);
+        // });
+    }
+
+}
+
