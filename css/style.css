@@ -1,0 +1,14 @@
+*{
+    box-sizing: border-box;
+}
+
+header{
+    height: 200px;
+}
+
+.meme-editor{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: burlywood;
+}
