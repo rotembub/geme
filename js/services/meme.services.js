@@ -107,10 +107,11 @@ var gMeme = {
             size: 30,
             align: 'left',
             color: 'white',
-            pos: { x: 250, y: 50 }
+            pos: { x: 250, y: 50 },
         }
     ]
 }
+setMemeLinesBorders()
 
 function getImgs() {
     return gImgs;
@@ -144,22 +145,27 @@ function getMeme() {
 
 function increaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size++;
+    setMemeLinesBorders();
 }
 
 function decreaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size--;
+    setMemeLinesBorders();
 }
 
 function changeTextPos(x = 250, y = 50) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
     gMeme.lines[gMeme.selectedLineIdx].pos.x = y;
+    setMemeLinesBorders();
 }
 
 function moveTextUp() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
+    setMemeLinesBorders();
 }
 function moveTextDown() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
+    setMemeLinesBorders();
 }
 
 function createNewLine() {
@@ -169,10 +175,11 @@ function createNewLine() {
         size: 30,
         align: 'left',
         color: 'white',
-        pos: { x: 250, y: 450 }
+        pos: { x: 250, y: 450 },
     }
-    // if (gMeme.lines == 1) {
+    // if (gMeme.lines === 1) {
     gMeme.lines.push(newLine);
+    setMemeLinesBorders();
     // }
 }
 
@@ -181,3 +188,15 @@ function setCurrLine() {
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
     console.log('Line Selected: ', gMeme.selectedLineIdx);
 }
+
+function isLineClicked(pos) {
+    // var lineBorder = 
+}
+
+//prototype:
+function setMemeLinesBorders() {
+    gMeme.lines.forEach(line => {
+        line.border = { width: line.pos.x + line.size + line.txt.length, height: line.size, xStart: line.pos.x, yStart: line.pos.y - line.size };
+    });
+}
+
