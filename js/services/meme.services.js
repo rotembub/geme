@@ -222,7 +222,7 @@ function isLineClicked(pos) {
     return false;
 }
 
-//prototype :
+//prototype:
 function setMemeLinesBorders() {
     gMeme.lines.forEach(line => {
         line.border = {

@@ -4,6 +4,7 @@ var gElCanvas;
 var gCtx;
 var gAlign = 'center';
 var gIsClicked = false;
+var gCurrImage;
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
@@ -24,7 +25,10 @@ function onDown(event) {
     var pos = getEvPos(event);
     console.log(pos);
     gIsClicked = isLineClicked(pos);
-    if (gIsClicked) markSelected();
+    if (gIsClicked) {
+        renderText(); // WATCHOUT completely negates the shadow mark effect
+        markSelected();
+    }
 }
 
 function onMove(event) {
@@ -67,6 +71,7 @@ function openEditor(id) {
     // console.log(id);
     updateCurrentgMeme(id);
     var elEditor = document.querySelector('.meme-editor');
+    loadImage();
     drawImg();
     elEditor.classList.add('opened');
 }
@@ -76,20 +81,36 @@ function closeEditor(elEditor) {
     elEditor.classList.remove('opened');
 }
 
-function drawImg() {
+// seperating into load and draw functions to prevent image from flashing on change to the canvas
+function loadImage() {
     var imgSource = getgMemeImg();
-    var img = new Image();
-    img.src = imgSource;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    gCurrImage = new Image();
+    gCurrImage.src = imgSource;
+    gCurrImage.onload = () => {
+        gCtx.drawImage(gCurrImage, 0, 0, gElCanvas.width, gElCanvas.height);
         initialText();
     };
 }
+function drawImg() {
+    gCtx.drawImage(gCurrImage, 0, 0, gElCanvas.width, gElCanvas.height);
+    initialText(); // WATCHOUT TRYING SOMETHING
+}
+
+
+// DONT DELETE!!!!
+// MIGHT HAVE TO GO BACK TO IT IF BUG PRESISTS
+// function drawImg() {
+//     var imgSource = getgMemeImg();
+//     var img = new Image();
+//     img.src = imgSource;
+//     img.onload = () => {
+//         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+//         initialText();
+//     };
+// }
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
-    // You may clear part of the canvas
-    // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
 }
 
 // ORIGINAL:
@@ -137,6 +158,7 @@ function onNewLineInput() {
 
 function onSwitchLine() {
     setCurrLine(); // WATCHOUT need to remove it from here later
+    renderText();
     markSelected();
     // drawLineBorders();
 }
@@ -177,6 +199,7 @@ function initialText() {
         // gCtx.direction = 'ltr';
         // gCtx.textBaseline = 'middle';
         // gCtx.textAlign = gAlign;
+        gCtx.shadowBlur = 0;
         gCtx.lineWidth = 2;
         gCtx.strokeStyle = 'black';
         gCtx.fillStyle = `${meme.lines[i].color}`;
