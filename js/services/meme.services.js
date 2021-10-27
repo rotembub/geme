@@ -106,7 +106,8 @@ var gMeme = {
             txt: 'I never eat Falafel',
             size: 30,
             align: 'left',
-            color: 'white'
+            color: 'white',
+            pos: { x: 1, y: 4 }
         }
     ]
 }
@@ -139,4 +140,12 @@ function getgMemeImg() {
 
 function getMeme() {
     return gMeme;
+}
+
+function increaseTextSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size++;
+}
+
+function decreaseTextSize() {
+    gMeme.lines[gMeme.selectedLineIdx].size--;
 }

@@ -26,8 +26,11 @@
         <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
         <canvas id="canvas" height="500" width="500"></canvas>
         <div class="control-box">
-            <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here" oninput="updateText(this.value)">
+            <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
+                oninput="onUpdateText(this.value)">
             <!-- <input type="text" name="lower-text" placeholder="Lower Text Here"> -->
+            <button onclick="onChangeTextSize(true)">increase</button> <button
+                onclick="onChangeTextSize(false)">decrease</button>
         </div>
     </section>
 
