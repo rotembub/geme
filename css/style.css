@@ -7,8 +7,20 @@ header{
 }
 
 .meme-editor{
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
     height: 100%;
     display: none;
     background-color: burlywood;
+}
+.opened{
+    display: block;
+}
+
+.btn-close-editor{
+    position: absolute;
+    top: 0%;
+    right: 0%;
 }

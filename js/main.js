@@ -30,8 +30,21 @@ function loadImages() {
 
 }
 
-function openEditor() {
-    
+function openEditor(imgSrc) {
+    console.log(imgSrc);
+    var elEditor = document.querySelector('.meme-editor');
+    var elMemeImg = document.querySelector('.meme-editor img');
+    console.log(elEditor);
+    console.log(elMemeImg);
+    elMemeImg.src = imgSrc;
+    elEditor.classList.add('opened');
+
+
+}
+
+function closeEditor(elEditor) {
+    console.log(elEditor);
+    elEditor.classList.remove('opened');
 }
 
 

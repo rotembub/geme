@@ -9,30 +9,36 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body onload="init()">
+<body>
     <header>
         <h2>HEADER</h2>
     </header>
 
     <main>
         <div class="img-gallery">
-            <img src="/meme-imgs (square)/1.jpg" onclick="openEditor()" alt="" data-idx="1">
-            <img src="/meme-imgs (square)/2.jpg" onclick="openEditor()" alt="" data-idx="2">
-            <img src="/meme-imgs (square)/3.jpg" onclick="openEditor()" alt="" data-idx="3">
-            <img src="/meme-imgs (square)/4.jpg" onclick="openEditor()" alt="" data-idx="4">
-            <img src="/meme-imgs (square)/5.jpg" onclick="openEditor()" alt="" data-idx="5">
-            <img src="/meme-imgs (square)/6.jpg" onclick="openEditor()" alt="" data-idx="6">
-            <img src="/meme-imgs (square)/7.jpg" onclick="openEditor()" alt="" data-idx="7">
-            <img src="/meme-imgs (square)/8.jpg" onclick="openEditor()" alt="" data-idx="8">
+            <img src="/meme-imgs (square)/1.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/2.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/3.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/4.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/5.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/6.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/7.jpg" onclick="openEditor(this.src)" alt="">
+            <img src="/meme-imgs (square)/8.jpg" onclick="openEditor(this.src)" alt="">
         </div>
 
     </main>
 
     <section class="meme-editor">
-        <img src="/meme-imgs (square)/1.jpg" alt="">
+        <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
+        <img src="" alt="">
     </section>
 
+
+
     <footer>footer</footer>
+
+    <script src="js/services/meme.services.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
