@@ -3,16 +3,34 @@
 }
 
 
+
+
+.container{
+    display: grid;
+    grid-template-rows: 200px 100px 1fr 200px  ;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "header"
+    "search-bar"
+    "main"
+    "footer" ;
+}
 header{
+    grid-area: header;
     height: 200px;
 }
+.search-bar{
+    grid-area: search-bar;
+}
 
-/* main{
-    display: grid;
-    height: 90vh;
-    grid-template-columns: repeat(auto-fit , minmax(50px , 200px)) ;
-    grid-auto-rows: 50px;
-} */
+main{
+    grid-area: main;
+    background-color:seagreen;
+}
+footer{
+    grid-area: footer;
+}
+
 
 .meme-editor{
     position: absolute;
