@@ -58,7 +58,7 @@ function drawImg() {
     img.src = imgSource;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        addText();
+        initialText();
     };
 }
 
@@ -68,9 +68,9 @@ function clearCanvas() {
     // gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / 4)
 }
 
-function addText() {
+function initialText() {
     var meme = getMeme()
-    var x = gElCanvas.width *0.5;
+    var x = gElCanvas.width * 0.5;
     var y = gElCanvas.height * 0.1;
     gCtx.lineWidth = 2;
     gCtx.strokeStyle = 'black';
@@ -78,4 +78,11 @@ function addText() {
     gCtx.font = `${meme.lines[meme.selectedLineIdx].size}px Impact`;
     gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
     gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
+}
+
+function updateText(val) {
+    updateMemeText(val);
+    clearCanvas();
+    drawImg();
+    initialText();
 }

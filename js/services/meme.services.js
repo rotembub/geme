@@ -128,7 +128,10 @@ function updateGmemeId(id) {
 
 function updateCurrentgMeme(id) {
     gMeme.selectedImgId = id;
-};
+}
+function updateMemeText(text) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = text;
+}
 
 function getgMemeImg() {
     return getImgById(gMeme.selectedImgId).url;
