@@ -17,10 +17,12 @@
 // i. Make sure you can access your project in gitPage
 
 
-
+var gElCanvas;
+var gCtx;
 
 function init() {
-
+    gElCanvas = document.getElementById('canvas');
+    gCtx = gElCanvas.getContext('2d');
 }
 
 
@@ -33,10 +35,11 @@ function loadImages() {
 function openEditor(imgSrc) {
     console.log(imgSrc);
     var elEditor = document.querySelector('.meme-editor');
-    var elMemeImg = document.querySelector('.meme-editor img');
-    console.log(elEditor);
-    console.log(elMemeImg);
-    elMemeImg.src = imgSrc;
+    // var elMemeImg = document.querySelector('.meme-editor img');
+    // console.log(elEditor);
+    // console.log(elMemeImg);
+    // elMemeImg.src = imgSrc;
+    drawImg(imgSrc);
     elEditor.classList.add('opened');
 
 
@@ -47,6 +50,12 @@ function closeEditor(elEditor) {
     elEditor.classList.remove('opened');
 }
 
-
+function drawImg(imgSrc) {
+    var img = new Image();
+    img.src = imgSrc;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    };
+}
 
 
