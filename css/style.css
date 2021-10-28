@@ -289,6 +289,21 @@ button.move-down{
     } */
 }
 
+/* @media screen and (max-width: 500px){
+    header{
+        max-width: 420px;
+    }
+    .search-bar{
+        max-width: 420px;
+    }
+    footer{
+        max-width: 420px;
+    }
+    .meme-editor{
+        max-width: 420px;
+    }
+} */
+
 
 /* need to figure out the modal location on phones */
 
