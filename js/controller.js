@@ -187,6 +187,14 @@ function onAlignCenter() {
     renderText();
 }
 
+function onDeleteLine() {
+    deleteSelectedLine();
+    renderText();
+}
+
+function onDownloadImg(elAnchor) {
+    elAnchor.href = gElCanvas.toDataURL('image/jpeg');
+}
 
 // prototype:
 function initialText() {

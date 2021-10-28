@@ -12,7 +12,11 @@
 <body onload="init()">
     <div class="container">
         <header>
-            <h2>HEADER</h2>
+            <h2>logo</h2>
+            <div class="header-inner-container">
+                <h2>gallery</h2>
+                <h2>memes</h2>
+            </div>
         </header>
         <section class="search-bar">search bar</section>
         <main>
@@ -34,6 +38,7 @@
                 <button onclick="onNewLineInput()">add line</button>
                 <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
                     oninput="onUpdateText(this.value)">
+                <button onclick="onDeleteLine()">Delete</button>
                 <button onclick="onChangeTextSize(true)">increase</button> <button
                     onclick="onChangeTextSize(false)">decrease</button>
                 <button onclick="onMoveLine(true)">Up</button>
@@ -41,6 +46,7 @@
                 <button onclick="onAlignRight()">Align-R</button>
                 <button onclick="onAlignLeft()">Align-L</button>
                 <button onclick="onAlignCenter()">Align-C</button>
+                <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
 
                 <label for="color-input">Color: </label>
                 <input type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">

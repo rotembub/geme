@@ -181,6 +181,7 @@ function createNewLine() {
         pos: { x: 250, y: 450 },
         lineLength: null,
     }
+    if (gMeme.lines.length === 0) newLine.pos.y = 50;
     if (gMeme.lines.length >= 2) {
         newLine.pos.y = 250;
     }
@@ -254,4 +255,8 @@ function alignLines(side) {
         if (side === 'right') line.pos.x = xLocation - line.lineLength;
         if (side === 'center') line.pos.x = xLocation - line.lineLength / 2;
     });
+}
+
+function deleteSelectedLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
 }
