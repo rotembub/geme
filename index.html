@@ -47,6 +47,8 @@
                 <button onclick="onAlignLeft()">Align-L</button>
                 <button onclick="onAlignCenter()">Align-C</button>
                 <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
+                <button onclick="uploadImg()">Share</button>
+                <div class="share-container"></div>
                 <input type="file" class="file-input btn" name="image" onchange="onUpload(event)" />
 
                 <label for="color-input">Color: </label>
@@ -56,7 +58,9 @@
                     <option value="Arial">Arial</option>
                     <option value="Verdana">Verdana</option>
                 </select>
-                <!-- <button>color</button> -->
+                
+
+                
             </div>
         </div>
     </section>
@@ -66,6 +70,7 @@
 
 
     <script src="js/services/meme.services.js"></script>
+    <script src="js/services/share.services.js"></script>
     <script src="js/controller.js"></script>
     <script src="js/main.js"></script>
 </body>

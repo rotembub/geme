@@ -77,7 +77,7 @@ function openEditor(id) {
 }
 
 function closeEditor(elEditor) {
-    // console.log(elEditor);
+    document.querySelector('.share-container').innerHTML = '';
     elEditor.classList.remove('opened');
 }
 
