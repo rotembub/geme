@@ -43,6 +43,7 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchend', onUp)
 }
+// come back to it later
 function resizeCanvas() {
     const elContainer = document.querySelector('.editor-container')
     gElCanvas.width = elContainer.offsetWidth
@@ -235,6 +236,7 @@ function initialText() {
 
 // a failed attemped need to either fix or delete
 // GET BACK TO IT LATER CALLING DIRECTLLY TO gMeme need a work around
+// prototype: currently NOT IN USE
 function drawLineBorders() {
     gMeme.lines[gMeme.selectedLineIdx]
     var x = gMeme.lines[gMeme.selectedLineIdx].border.xStart;
