@@ -8,6 +8,7 @@ var gCurrImage;
 var gSavedMemes;
 var gSearchBy;
 var gIsSearching = false;
+const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
@@ -26,12 +27,25 @@ function loadSavedMemes() {
 // click and drag functions:
 function addListeners() {
     addMouseListeners();
+    addTouchListeners();
 }
 function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mouseup', onUp)
 }
+function addTouchListeners() {
+    gElCanvas.addEventListener('touchmove', onMove)
+    gElCanvas.addEventListener('touchstart', onDown)
+    gElCanvas.addEventListener('touchend', onUp)
+}
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
+}
+
+
 
 function onDown(event) {
     var pos = getEvPos(event);
@@ -54,7 +68,6 @@ function onMove(event) {
 function onUp(event) {
     gIsClicked = false;
     var pos = getEvPos(event);
-
 }
 
 function getEvPos(ev) {
@@ -62,7 +75,15 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY
     }
-    // console.log(pos);
+    if (gTouchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop - 200 // parent element on Absolute position with 200px from the top
+        }
+    }
+    console.log(pos);
     return pos
 }
 
@@ -322,7 +343,7 @@ function revealKeyWords() {
     });
 }
 
-function onIncreaseFont( word) {
+function onIncreaseFont(word) {
     increaseRate(word);
     displayKeyWords();
     setSearchBy(word);

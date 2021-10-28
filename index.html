@@ -21,7 +21,8 @@
         <section class="search-bar">
             <div class="input-container">
                 <!-- <label for="search-bar-input">Search:</label> -->
-                <input type="search" class="search-input" name="search-bar-input" id="search-bar-input" placeholder="Search" oninput="setSearchBy(this.value)">
+                <input type="search" class="search-input" name="search-bar-input" id="search-bar-input"
+                    placeholder="Search" oninput="setSearchBy(this.value)">
             </div>
             <div class="keywords">
 
@@ -39,7 +40,9 @@
     <section class="meme-editor">
         <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
         <div class="editor-container">
-            <canvas id="canvas" height="500" width="500" style="margin-top: 100px;"></canvas>
+            <div class="canvas-container">
+                <canvas id="canvas" height="500" width="500" style="margin-top: 100px;"></canvas>
+            </div>
             <div class="control-box">
                 <button onclick="onSwitchLine()">Switch Lines</button>
                 <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
