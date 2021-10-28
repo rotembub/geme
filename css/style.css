@@ -2,6 +2,9 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: gray;
+}
 
 
 
@@ -9,8 +12,8 @@
     text-align: center;
     display: grid;
     justify-items: center;
-    grid-template-rows: 200px 100px 1fr 200px  ;
-    grid-template-columns: 1fr;
+    grid-template-rows: 100px 100px 1fr 200px  ;
+    /* grid-template-columns: repeat(auto-fill, 1fr); */
     grid-template-areas:
     "header"
     "search-bar"
@@ -19,26 +22,45 @@
 }
 header{
     grid-area: header;
-    height: 200px;
+    /* height: 200px; */
     width: 100%;
-    background-color: slategrey;
+    background: linear-gradient(90deg, rgba(0,36,17,1) 0%, rgba(0,212,255,1) 0%, rgba(58,121,9,1) 100%);
     display: flex;
     justify-content: space-around;
     align-items: center;
+    border-radius: 100vh;
+    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    color: white;
+}
+header .logo{
+    background-image: url('/ICONS/LOGO.png');
+    background-repeat:no-repeat;
+    background-size:contain;
+    height:50px;
+    width:100px;
+    align-self: end;
+    margin-bottom: 10px;
+    
 }
 .header-inner-container{
     display: flex;
     justify-content: space-between;
+    width: 25%;
 }
 .search-bar{
     width: 100%;
     grid-area: search-bar;
-    background-color: springgreen;
+    /* background-color: springgreen; */
     display: flex;
     align-items: center;
+    
+}
+.search-bar .keywords{
+    background-color: white;
+    border-radius: 100vh;
 }
 
-.search-bar .keywords>*:not(button) {
+.search-bar .keywords>*:not(a) {
     padding-left: 10px;
     color: red;
 }
@@ -48,6 +70,16 @@ header{
 .search-bar .keywords span.reveal{
     display: inline;
 }
+.search-input{
+    background-color: black;
+    border-radius: 100vh;
+    color: white;
+    
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
 
 main{
     grid-area: main;
@@ -58,7 +90,7 @@ main{
     justify-content: center;
     row-gap: 20px;
     column-gap: 20px;
-    grid-template-rows: repeat(4,200px);  ;
+    grid-template-rows: repeat(auto-fill,200px);  ;
     grid-template-columns: repeat(6,200px);
 }
 .img-gallery>*{
@@ -76,7 +108,7 @@ footer{
 
 .meme-editor{
     position: absolute;
-    top: 0;
+    top: 200px;
     right: 0;
     bottom: 0;
     left: 0;

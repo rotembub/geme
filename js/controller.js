@@ -308,7 +308,7 @@ function displayKeyWords() {
     for (var key in keywords) {
         strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);">${key}</span>`;
     }
-    strHTML += '<button onclick="revealKeyWords()">More</button>'
+    strHTML += '<a onclick="revealKeyWords()">More</a>'
     // console.log(strHTML);
     document.querySelector('.keywords').innerHTML = strHTML;
 }

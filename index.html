@@ -12,7 +12,7 @@
 <body onload="init()">
     <div class="container">
         <header>
-            <h2>logo</h2>
+            <div class="logo"></div>
             <div class="header-inner-container">
                 <h2 onclick="renderImages()">gallery</h2>
                 <h2 onclick="displaySavedMemes()">memes</h2>
@@ -20,8 +20,8 @@
         </header>
         <section class="search-bar">
             <div class="input-container">
-                <label for="search-bar-input">Search:</label>
-                <input type="search" name="search-bar-input" id="search-bar-input" oninput="setSearchBy(this.value)">
+                <!-- <label for="search-bar-input">Search:</label> -->
+                <input type="search" class="search-input" name="search-bar-input" id="search-bar-input" placeholder="Search" oninput="setSearchBy(this.value)">
             </div>
             <div class="keywords">
 
@@ -29,7 +29,7 @@
         </section>
         <main>
             <div class="img-gallery">
-    
+
             </div>
         </main>
         <footer>footer</footer>
@@ -38,7 +38,7 @@
     <section class="meme-editor">
         <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
         <div class="editor-container">
-            <canvas id="canvas" height="500" width="500"></canvas>
+            <canvas id="canvas" height="500" width="500" style="margin-top: 100px;"></canvas>
             <div class="control-box">
                 <button onclick="onSwitchLine()">Switch Lines</button>
                 <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
