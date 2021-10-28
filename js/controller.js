@@ -6,6 +6,8 @@ var gAlign = 'center';
 var gIsClicked = false;
 var gCurrImage;
 var gSavedMemes;
+var gSearchBy;
+var gIsSearching = false;
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
@@ -69,9 +71,14 @@ function renderImages() {
     console.log(images);
     var elGallery = document.querySelector('.img-gallery');
     var strHtml = images.map(img => {
-        return `<img src="${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`
+        if (gIsSearching) {
+            if (img.keywords.includes(gSearchBy)) return `<img src="${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`;
+        } else {
+            return `<img src="${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`;
+        }
     })
     elGallery.innerHTML = strHtml.join('');
+    gIsSearching = false; // WATCHOUT
 }
 
 function openEditor(id) {
@@ -275,11 +282,42 @@ function loadInputImage(ev, drawImage) {
 }
 
 
- // need to figure out a way of allowing it to be edited , set opened meme as gMeme get back to it later figure out name = id cause it has none
+// need to figure out a way of allowing it to be edited , set opened meme as gMeme get back to it later figure out name = id cause it has none
 function displaySavedMemes() {
     var elGallery = document.querySelector('.img-gallery');
     var strHtml = gSavedMemes.map(meme => {
         return `<img src="${meme}" alt="">`
     })
     elGallery.innerHTML = strHtml.join('');
+}
+
+function setSearchBy(word) {
+    if (!word) {
+        renderImages();
+        return;
+    }
+    gIsSearching = true;
+    gSearchBy = word;
+    console.log(gSearchBy);
+    renderImages();
+}
+
+function displayKeyWords() {
+    var keywords = getKeyWords();
+    var strHTML = ''
+    for (var key in keywords) {
+        strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);">${key}</span>`;
+    }
+    strHTML += '<button onclick="revealKeyWords()">More</button>'
+    // console.log(strHTML);
+    document.querySelector('.keywords').innerHTML = strHTML;
+}
+
+// REMINDER: i could set invisible in CSS to all spans except for like 4 and when a button is pressed it gives visible to all.
+
+function revealKeyWords() {
+    var elSpans = document.querySelectorAll('.search-bar .keywords span');
+    elSpans.forEach(elSpan => {
+        elSpan.classList.add('reveal');
+    });
 }

@@ -34,6 +34,19 @@ header{
     width: 100%;
     grid-area: search-bar;
     background-color: springgreen;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar .keywords>*:not(button) {
+    padding-left: 10px;
+    color: red;
+}
+.search-bar .keywords span:nth-child(even){
+    display: none;
+}
+.search-bar .keywords span.reveal{
+    display: inline;
 }
 
 main{

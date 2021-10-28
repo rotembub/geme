@@ -22,6 +22,7 @@
 function init() {
     renderImages();
     initCanvas();
+    displayKeyWords();
 }
 
 

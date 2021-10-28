@@ -6,77 +6,77 @@ var gImgs = [
     {
         id: 1,
         url: '/meme-imgs (square)/1.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['mad', 'funny'],
     },
     {
         id: 2,
         url: '/meme-imgs (square)/2.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['happy', 'cute'],
     },
     {
         id: 3,
         url: '/meme-imgs (square)/3.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['cute', 'funny', 'baby'],
     },
     {
         id: 4,
         url: '/meme-imgs (square)/4.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['sleep', 'cute', 'funny'],
     },
     {
         id: 5,
         url: '/meme-imgs (square)/5.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['strong', 'funny', 'baby'],
     },
     {
         id: 6,
         url: '/meme-imgs (square)/6.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['crazy', 'funny', 'hair'],
     },
     {
         id: 7,
         url: '/meme-imgs (square)/7.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['surprise', 'funny', 'baby'],
     },
     {
         id: 8,
         url: '/meme-imgs (square)/8.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['happy', 'proud'],
     },
     {
         id: 9,
         url: '/meme-imgs (square)/9.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['happy', 'funny', 'baby'],
     },
     {
         id: 10,
         url: '/meme-imgs (square)/10.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['happy', 'funny', 'leader'],
     },
     {
         id: 11,
         url: '/meme-imgs (square)/11.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['adult', 'mad'],
     },
     {
         id: 12,
         url: '/meme-imgs (square)/12.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['blame', 'funny'],
     },
     {
         id: 13,
         url: '/meme-imgs (square)/13.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['happy', 'leader', 'funny', 'charisma'],
     },
     {
         id: 14,
         url: '/meme-imgs (square)/14.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['inspire', 'charisma'],
     },
     {
         id: 15,
         url: '/meme-imgs (square)/15.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['lotr', 'funny', 'charisma'],
     },
     {
         id: 16,
@@ -86,12 +86,12 @@ var gImgs = [
     {
         id: 17,
         url: '/meme-imgs (square)/17.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['leaders', 'funny',],
     },
     {
         id: 18,
         url: '/meme-imgs (square)/18.jpg',
-        keywords: ['happy', 'funny'],
+        keywords: ['happy', 'funny', 'classic'],
     },
 
 ];
@@ -111,7 +111,9 @@ var gMeme = {
         }
     ]
 }
-setMemeLinesBorders()
+mapKeyWords();
+
+setMemeLinesBorders(); // not sure if im gonna keep it
 
 function getImgs() {
     return gImgs;
@@ -259,4 +261,19 @@ function alignLines(side) {
 
 function deleteSelectedLine() {
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+}
+
+function mapKeyWords() {
+    gKeywords = gImgs.reduce((map, img) => {
+        img.keywords.reduce((innermap, word) => {
+            (!map[word]) ? map[word] = 1 : map[word]++
+            return innermap;
+        }, {});
+        return map;
+    }, {});
+    // console.log(gKeywords);
+}
+
+function getKeyWords() {
+    return gKeywords;
 }
