@@ -223,7 +223,7 @@ function isLineClicked(pos) {
     return false;
 }
 
-//prototype:
+//prototype: failed attempt might need to remove it completely
 function setMemeLinesBorders() {
     gMeme.lines.forEach(line => {
         line.border = {

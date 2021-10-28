@@ -14,11 +14,19 @@
         <header>
             <h2>logo</h2>
             <div class="header-inner-container">
-                <h2>gallery</h2>
-                <h2>memes</h2>
+                <h2 onclick="renderImages()">gallery</h2>
+                <h2 onclick="displaySavedMemes()">memes</h2>
             </div>
         </header>
-        <section class="search-bar">search bar</section>
+        <section class="search-bar">
+            <div class="input-container">
+                <label for="search-bar-input">Search:</label>
+                <input type="search" name="search-bar-input" id="search-bar-input">
+            </div>
+            <div class="keywords">
+                
+            </div>
+        </section>
         <main>
             <div class="img-gallery">
 
@@ -58,9 +66,7 @@
                     <option value="Arial">Arial</option>
                     <option value="Verdana">Verdana</option>
                 </select>
-                
 
-                
             </div>
         </div>
     </section>
@@ -68,7 +74,7 @@
 
 
 
-
+    <script src="js/services/storage.services.js"></script>
     <script src="js/services/meme.services.js"></script>
     <script src="js/services/share.services.js"></script>
     <script src="js/controller.js"></script>

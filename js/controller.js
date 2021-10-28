@@ -5,12 +5,22 @@ var gCtx;
 var gAlign = 'center';
 var gIsClicked = false;
 var gCurrImage;
+var gSavedMemes;
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
     gCtx = gElCanvas.getContext('2d');
+    gSavedMemes = loadSavedMemes() // watchout
     addListeners();
 }
+// prototye
+function loadSavedMemes() {
+    var memes = loadFromStorage('savedMemes');
+    console.log(memes);
+    if (!memes) return [];
+    else return memes;
+}
+
 // click and drag functions:
 function addListeners() {
     addMouseListeners();
@@ -54,10 +64,7 @@ function getEvPos(ev) {
     return pos
 }
 
-
-
-
-function RenderImages() {
+function renderImages() {
     var images = getImgs();
     console.log(images);
     var elGallery = document.querySelector('.img-gallery');
@@ -193,8 +200,13 @@ function onDeleteLine() {
 }
 
 function onDownloadImg(elAnchor) {
+    // gSavedMemes.push(getMeme()); // prototype
     elAnchor.href = gElCanvas.toDataURL('image/jpeg');
+    gSavedMemes.push(elAnchor.href);
+    saveToStorage('savedMemes', gSavedMemes);
 }
+
+
 
 // prototype:
 function initialText() {
@@ -202,8 +214,8 @@ function initialText() {
     for (var i = 0; i < meme.lines.length; i++) {
         // console.log(gCtx.measureText(meme.lines[i].txt).width);
         setLineLength(i, gCtx.measureText(meme.lines[i].txt).width);
-        var x = gMeme.lines[i].pos.x;
-        var y = gMeme.lines[i].pos.y;
+        var x = meme.lines[i].pos.x;
+        var y = meme.lines[i].pos.y;
         // gCtx.direction = 'ltr';
         // gCtx.textBaseline = 'middle';
         // gCtx.textAlign = gAlign;
@@ -218,7 +230,7 @@ function initialText() {
 }
 
 
-// GET BACK TO IT LATER
+// GET BACK TO IT LATER CALLING DIRECTLLY TO gMeme need a work around
 function drawLineBorders() {
     gMeme.lines[gMeme.selectedLineIdx]
     var x = gMeme.lines[gMeme.selectedLineIdx].border.xStart;
@@ -234,8 +246,8 @@ function drawLineBorders() {
 // not looking good gotta fix it if there is time
 function markSelected() {
     var meme = getMeme()
-    var x = gMeme.lines[gMeme.selectedLineIdx].pos.x;
-    var y = gMeme.lines[gMeme.selectedLineIdx].pos.y;
+    var x = meme.lines[meme.selectedLineIdx].pos.x;
+    var y = meme.lines[meme.selectedLineIdx].pos.y;
     gCtx.shadowColor = "black";
     gCtx.shadowBlur = 50;
     gCtx.lineWidth = 2;
@@ -260,4 +272,14 @@ function loadInputImage(ev, drawImage) {
         gCurrImage = img;
     }
     reader.readAsDataURL(ev.target.files[0]);
+}
+
+
+ // need to figure out a way of allowing it to be edited , set opened meme as gMeme get back to it later figure out name = id cause it has none
+function displaySavedMemes() {
+    var elGallery = document.querySelector('.img-gallery');
+    var strHtml = gSavedMemes.map(meme => {
+        return `<img src="${meme}" alt="">`
+    })
+    elGallery.innerHTML = strHtml.join('');
 }

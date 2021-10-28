@@ -20,7 +20,7 @@
 
 
 function init() {
-    RenderImages();
+    renderImages();
     initCanvas();
 }
 
