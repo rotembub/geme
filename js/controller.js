@@ -74,7 +74,7 @@ function renderImages() {
         if (gIsSearching) {
             if (img.keywords.includes(gSearchBy)) return `<img src="${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`;
         } else {
-            return `<img src="${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`;
+            return `<img src=".${img.url}" onclick="openEditor(this.name)" alt="" name="${img.id}">`;
         }
     })
     elGallery.innerHTML = strHtml.join('');
