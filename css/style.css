@@ -58,6 +58,8 @@ header .logo{
 .search-bar .keywords{
     background-color: white;
     border-radius: 100vh;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .search-bar .keywords>*:not(a) {
@@ -109,7 +111,7 @@ footer{
 }
 
 
-.meme-editor{
+/* .meme-editor{
     position: absolute;
     top: 200px;
     right: 0;
@@ -119,7 +121,17 @@ footer{
     height: 100%;
     display: none;
     background-color: burlywood;
+} */
+
+.meme-editor{
+    position: fixed;
+    top:0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: linear-gradient(90deg, rgba(0,36,17,1) 0%, rgba(0,212,255,1) 0%, rgba(58,121,9,1) 100%);
 }
+
 
 .editor-container{
     display: flex;
@@ -131,6 +143,7 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: center;
+
 }
 
 canvas{
@@ -145,13 +158,35 @@ canvas{
 
 .btn-close-editor{
     position: absolute;
-    top: 0%;
-    right: 0%;
+    top: 1%;
+    right: 1%;
 }
 
 .lower-text{
     visibility: hidden;
 }
+
+/* control buttons */
+
+/* .move-up{
+    background-image: url(/ICONS/);
+}
+.move-down{
+
+} */
+
+.control-box button{
+    cursor:pointer;
+}
+/* .align-right{
+    
+}
+.align-left{
+
+}
+.align-center{
+
+} */
 
 
 @media screen and (max-width: 1320px) {
@@ -162,6 +197,12 @@ canvas{
         column-gap: 20px;
         grid-template-rows: repeat(auto-fill, minmax(200px,1fr)); 
         grid-template-columns: repeat(4,200px);
+    }
+    header{
+        max-width: 900px;
+    }
+    .search-bar{
+        max-width: 900px;
     }
 
 }

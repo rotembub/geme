@@ -46,32 +46,42 @@
                 <canvas id="canvas" height="500" width="500" style="margin-top: 100px;"></canvas>
             </div>
             <div class="control-box">
-                <button onclick="onSwitchLine()">Switch Lines</button>
-                <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
-                    oninput="onUpdateText(this.value)">
-                <button onclick="onNewLineInput()">add line</button>
-                <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
-                    oninput="onUpdateText(this.value)">
-                <button onclick="onDeleteLine()">Delete</button>
-                <button onclick="onChangeTextSize(true)">increase</button> <button
-                    onclick="onChangeTextSize(false)">decrease</button>
-                <button onclick="onMoveLine(true)">Up</button>
-                <button onclick="onMoveLine(false)">Down</button>
-                <button onclick="onAlignRight()">Align-R</button>
-                <button onclick="onAlignLeft()">Align-L</button>
-                <button onclick="onAlignCenter()">Align-C</button>
-                <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
-                <button onclick="uploadImg()">Share</button>
-                <div class="share-container"></div>
-                <input type="file" class="file-input btn" name="image" onchange="onUpload(event)" />
 
-                <label for="color-input">Color: </label>
-                <input type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">
-                <select onchange="onSetFont(this.value)">
-                    <option value="Impact">Impact</option>
-                    <option value="Arial">Arial</option>
-                    <option value="Verdana">Verdana</option>
-                </select>
+                <div class="line-input">
+                    <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
+                        oninput="onUpdateText(this.value)">
+                    <button onclick="onNewLineInput()">add line</button>
+                    <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
+                        oninput="onUpdateText(this.value)">
+                </div>
+                <div class="edit-btns">
+                    <button onclick="onSwitchLine()">Switch Lines</button>
+                    <button onclick="onDeleteLine()">Delete</button>
+                    <button onclick="onChangeTextSize(true)">increase</button> <button
+                        onclick="onChangeTextSize(false)">decrease</button>
+                </div>
+                <div class="movement-container">
+                    <button class="move-up" onclick="onMoveLine(true)">Up</button>
+                    <button class="move-down" onclick="onMoveLine(false)">Down</button>
+                    <button class="align-right" onclick="onAlignRight()">Align-R</button>
+                    <button class="align-left" onclick="onAlignLeft()">Align-L</button>
+                    <button class="align-center" onclick="onAlignCenter()">Align-C</button>
+                </div>
+                <div class="media-container">
+                    <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
+                    <button onclick="uploadImg()">Share</button>
+                    <div class="share-container"></div>
+                    <input type="file" class="file-input btn" name="image" onchange="onUpload(event)" />
+                </div>
+                <div class="font-container">
+                    <label for="color-input">Color: </label>
+                    <input type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">
+                    <select onchange="onSetFont(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Arial">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+                </div>
 
             </div>
         </div>

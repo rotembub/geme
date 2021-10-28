@@ -84,7 +84,7 @@ function getEvPos(ev) {
         ev = ev.changedTouches[0]
         pos = {
             x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop - 200 // parent element on Absolute position with 200px from the top
+            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop //- 200 // parent element on Absolute position with 200px from the top
         }
     }
     console.log(pos);
