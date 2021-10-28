@@ -245,3 +245,19 @@ function markSelected() {
     gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
     gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
 }
+
+
+function onUpload(ev) {
+    loadInputImage(ev, drawImg);
+}
+
+function loadInputImage(ev, drawImage) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = new Image();
+        img.onload = drawImage.bind(null, img);
+        img.src = event.target.result;
+        gCurrImage = img;
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+}

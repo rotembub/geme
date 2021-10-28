@@ -47,6 +47,7 @@
                 <button onclick="onAlignLeft()">Align-L</button>
                 <button onclick="onAlignCenter()">Align-C</button>
                 <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
+                <input type="file" class="file-input btn" name="image" onchange="onUpload(event)" />
 
                 <label for="color-input">Color: </label>
                 <input type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">
