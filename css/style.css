@@ -12,7 +12,7 @@ body{
     text-align: center;
     display: grid;
     justify-items: center;
-    grid-template-rows: 100px 100px 1fr 200px  ;
+    grid-template-rows: 100px 100px 1fr 100px  ;
     /* grid-template-columns: repeat(auto-fill, 1fr); */
     grid-template-areas:
     "header"
@@ -104,10 +104,11 @@ main{
 footer{
     width: 100%;
     grid-area: footer;
-    background-color: slategray;
+    background: linear-gradient(90deg, rgba(0,36,17,1) 0%, rgba(0,212,255,1) 0%, rgba(58,121,9,1) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 100vh;
 }
 
 
@@ -165,7 +166,15 @@ canvas{
 .lower-text{
     visibility: hidden;
 }
-
+.line-input{
+    display: flex;
+    flex-direction: column;
+}
+.edit-btns{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 /* control buttons */
 
 /* .move-up{
@@ -204,9 +213,50 @@ canvas{
     .search-bar{
         max-width: 900px;
     }
+    footer{
+        max-width: 900px;
+    }
+
+}
+@media screen and (max-width: 920px){
+    .editor-container{
+        flex-direction: column;
+    }
+    .line-input{
+        align-items: stretch;
+        width: 80%;
+    }
+    .canvas-container{
+        display: flex;
+        justify-content: center;
+    }
+    .control-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .control-box >* button{
+         /* width: 100px; */
+        height: 100px; 
+        font-size: x-large;
+    }
+    .control-box >* input{
+        height: 50px;
+        width: 100%;
+    }
+    .control-box >* {
+        font-size: x-large;
+    }
+    .control-box select{
+        font-size: xx-large;
+    }
+    .movement-container button{
+        width: 100px;
+
+    }
 
 }
 
 
-/* need to figure out the dumb modal location on phones */
+/* need to figure out the modal location on phones */
 
