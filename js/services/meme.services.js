@@ -113,7 +113,7 @@ var gMeme = {
 }
 mapKeyWords();
 
-setMemeLinesBorders(); // not sure if im gonna keep it
+// setMemeLinesBorders(); // not sure if im gonna keep it
 
 function getImgs() {
     return gImgs;
@@ -147,30 +147,28 @@ function getMeme() {
 
 function increaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size++;
-    setMemeLinesBorders();
+    // setMemeLinesBorders();
 }
 
 function decreaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size--;
-    setMemeLinesBorders();
+    // setMemeLinesBorders();
 }
-
-// (x = gMeme.lines[gMeme.selectedLineIdx].pos.x, y = gMeme.lines[gMeme.selectedLineIdx].pos.y)
 
 function changeTextPos(x, y = gMeme.lines[gMeme.selectedLineIdx].pos.y) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
     gMeme.lines[gMeme.selectedLineIdx].pos.y = y;
     // console.log('hi', x ,gMeme.lines[gMeme.selectedLineIdx].pos.x);
-    setMemeLinesBorders();
+    // setMemeLinesBorders();
 }
 
 function moveTextUp() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
-    setMemeLinesBorders();
+    // setMemeLinesBorders();
 }
 function moveTextDown() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
-    setMemeLinesBorders();
+    // setMemeLinesBorders();
 }
 
 function createNewLine() {
@@ -188,7 +186,7 @@ function createNewLine() {
         newLine.pos.y = 250;
     }
     gMeme.lines.push(newLine);
-    setMemeLinesBorders();
+    // setMemeLinesBorders();
 }
 
 function setCurrLine() {

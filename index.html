@@ -50,32 +50,32 @@
                 <div class="line-input">
                     <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
                         oninput="onUpdateText(this.value)">
-                    <button onclick="onNewLineInput()">add line</button>
+                    <button  class="add-line" onclick="onNewLineInput()"></button>
                     <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
                         oninput="onUpdateText(this.value)">
                 </div>
                 <div class="edit-btns">
-                    <button onclick="onSwitchLine()">Switch Lines</button>
-                    <button onclick="onDeleteLine()">Delete</button>
-                    <button onclick="onChangeTextSize(true)">increase</button> <button
-                        onclick="onChangeTextSize(false)">decrease</button>
+                    <button class="switch-lines" onclick="onSwitchLine()"></button>
+                    <button class="delete-line" onclick="onDeleteLine()"></button>
+                    <button class="increase-size" onclick="onChangeTextSize(true)"></button> <button
+                    class="decrease-size" onclick="onChangeTextSize(false)"></button>
                 </div>
                 <div class="movement-container">
-                    <button class="move-up" onclick="onMoveLine(true)">Up</button>
-                    <button class="move-down" onclick="onMoveLine(false)">Down</button>
-                    <button class="align-right" onclick="onAlignRight()">Align-R</button>
-                    <button class="align-left" onclick="onAlignLeft()">Align-L</button>
-                    <button class="align-center" onclick="onAlignCenter()">Align-C</button>
+                    <button class="move-up" onclick="onMoveLine(true)">⬆</button>
+                    <button class="move-down" onclick="onMoveLine(false)">⬇</button>
+                    <button class="align-right" onclick="onAlignRight()"></button>
+                    <button class="align-left" onclick="onAlignLeft()"></button>
+                    <button class="align-center" onclick="onAlignCenter()"></button>
                 </div>
                 <div class="media-container">
                     <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
-                    <button onclick="uploadImg()">Share</button>
+                    <button class="share-facebook" onclick="uploadImg()"></button>
                     <div class="share-container"></div>
                     <input type="file" class="file-input btn" name="image" onchange="onUpload(event)" />
                 </div>
                 <div class="font-container">
                     <label for="color-input">Color: </label>
-                    <input type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">
+                    <input class="color-input-btn" type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">
                     <select onchange="onSetFont(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>

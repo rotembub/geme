@@ -175,28 +175,61 @@ canvas{
     flex-direction: row;
     flex-wrap: wrap;
 }
-/* control buttons */
-
-/* .move-up{
-    background-image: url(/ICONS/);
+.movement-container{
+    display: flex;
 }
-.move-down{
+/* control buttons */
+ 
 
-} */
 
 .control-box button{
     cursor:pointer;
 }
-/* .align-right{
-    
+.control-box button{
+    background-size: cover;
+    background-color: transparent;
+    /* border: none; */
+    height: 50px;
+    width: 50px;
 }
+.align-right{
+    background-image: url(../ICONS/align-to-right.png);
+} 
 .align-left{
-
+    background-image: url(../ICONS/align-to-left.png);
 }
 .align-center{
-
+    background-image: url(../ICONS/center-text-alignment.png);
+}
+.switch-lines{
+    background-image: url(../ICONS/up-and-down-opposite-double-arrows-side-by-side.png);
+}
+.delete-line{
+    background-image: url(../ICONS/trash.png);
+}
+.decrease-size{
+    background-image: url(../ICONS/decrease\ font\ -\ icon.png);
+}
+.increase-size{
+    background-image: url(../ICONS/increase\ font\ -\ icon.png);
+}
+button.share-facebook{
+    background-image: url(../ICONS/facebook-logo.png);
+    background-color: lightblue;
+}
+button.move-up{
+    background-image: url(../ICONS/arrow-up.png);
+    background-color: transparent;
+}
+button.move-down{
+    background-image: url(../ICONS/arrow-down.jpg);
+}
+.add-line{
+    background-image: url(../ICONS/add.png);
+}
+/* .color-input-btn{
+    background-image: url(../ICONS/paint-board-and-brush.png);
 } */
-
 
 @media screen and (max-width: 1320px) {
     .img-gallery{
@@ -235,14 +268,10 @@ canvas{
         flex-direction: column;
         align-items: center;
     }
-    .control-box >* button{
-         /* width: 100px; */
-        height: 100px; 
-        font-size: x-large;
-    }
     .control-box >* input{
         height: 50px;
         width: 100%;
+        font-size: xx-large;
     }
     .control-box >* {
         font-size: x-large;
@@ -250,11 +279,14 @@ canvas{
     .control-box select{
         font-size: xx-large;
     }
-    .movement-container button{
-        width: 100px;
-
+    .btn-close-editor{
+        width: 50px;
+        height: 50px;
+        font-size: xx-large;
     }
-
+    /* .meme-editor{
+        font-size: xx-large;
+    } */
 }
 
 
