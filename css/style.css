@@ -90,7 +90,7 @@ main{
     justify-content: center;
     row-gap: 20px;
     column-gap: 20px;
-    grid-template-rows: repeat(auto-fill,200px);  ;
+    grid-template-rows: repeat(auto-fill, minmax(200px,1fr)); 
     grid-template-columns: repeat(6,200px);
 }
 .img-gallery>*{
@@ -103,6 +103,9 @@ footer{
     width: 100%;
     grid-area: footer;
     background-color: slategray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -149,3 +152,20 @@ canvas{
 .lower-text{
     visibility: hidden;
 }
+
+
+@media screen and (max-width: 1320px) {
+    .img-gallery{
+        display: grid;
+        justify-content: center;
+        row-gap: 20px;
+        column-gap: 20px;
+        grid-template-rows: repeat(auto-fill, minmax(200px,1fr)); 
+        grid-template-columns: repeat(4,200px);
+    }
+
+}
+
+
+/* need to figure out the dumb modal location on phones */
+

@@ -28,6 +28,10 @@ function loadSavedMemes() {
 function addListeners() {
     addMouseListeners();
     addTouchListeners();
+    // window.addEventListener('resize', () => {
+    //     resizeCanvas()
+    //     renderCanvas()
+    // })
 }
 function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
@@ -40,7 +44,7 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 function resizeCanvas() {
-    const elContainer = document.querySelector('.canvas-container')
+    const elContainer = document.querySelector('.editor-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 }
@@ -257,7 +261,7 @@ function initialText() {
     }
 }
 
-
+// a failed attemped need to either fix or delete
 // GET BACK TO IT LATER CALLING DIRECTLLY TO gMeme need a work around
 function drawLineBorders() {
     gMeme.lines[gMeme.selectedLineIdx]
