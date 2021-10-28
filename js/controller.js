@@ -306,9 +306,9 @@ function displayKeyWords() {
     var keywords = getKeyWords();
     var strHTML = ''
     for (var key in keywords) {
-        strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);">${key}</span>`;
+        strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);" onclick="onIncreaseFont('${key}')">${key}</span>`;
     }
-    strHTML += '<a onclick="revealKeyWords()">More</a>'
+    // strHTML += '<a onclick="revealKeyWords()">More</a>'
     // console.log(strHTML);
     document.querySelector('.keywords').innerHTML = strHTML;
 }
@@ -320,4 +320,10 @@ function revealKeyWords() {
     elSpans.forEach(elSpan => {
         elSpan.classList.add('reveal');
     });
+}
+
+function onIncreaseFont( word) {
+    increaseRate(word);
+    displayKeyWords();
+    setSearchBy(word);
 }

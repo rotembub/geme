@@ -277,3 +277,7 @@ function mapKeyWords() {
 function getKeyWords() {
     return gKeywords;
 }
+
+function increaseRate(word) {
+    gKeywords[word]++;
+}
