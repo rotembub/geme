@@ -329,7 +329,7 @@ function revealKeyWords(elAnchor) {
     elSpans.forEach(elSpan => {
         elSpan.classList.add('reveal');
     });
-    elAnchor.style.display = 'none';
+    // elAnchor.style.display = 'none';
 }
 
 function onIncreaseFont(word) {
