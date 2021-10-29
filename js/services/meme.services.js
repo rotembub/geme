@@ -101,7 +101,7 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'I never eat Falafel',
+            txt: 'Use the text box',
             size: 30,
             align: 'left',
             color: 'white',
