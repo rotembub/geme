@@ -324,11 +324,12 @@ function displayKeyWords() {
 
 // REMINDER: i could set invisible in CSS to all spans except for like 4 and when a button is pressed it gives visible to all.
 
-function revealKeyWords() {
+function revealKeyWords(elAnchor) {
     var elSpans = document.querySelectorAll('.search-bar .keywords span');
     elSpans.forEach(elSpan => {
         elSpan.classList.add('reveal');
     });
+    elAnchor.style.display = 'none';
 }
 
 function onIncreaseFont(word) {
