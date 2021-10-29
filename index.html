@@ -11,30 +11,30 @@
 
 <body onload="init()">
     <div class="container">
-        <header>
+        <header class="layout">
             <div class="logo"></div>
             <div class="header-inner-container">
                 <h2 onclick="renderImages()">gallery</h2>
                 <h2 onclick="displaySavedMemes()">memes</h2>
             </div>
         </header>
-        <section class="search-bar">
+        <section class="search-bar layout">
             <div class="input-container">
                 <!-- <label for="search-bar-input">Search:</label> -->
                 <input type="search" class="search-input" name="search-bar-input" id="search-bar-input"
                     placeholder="Search" oninput="setSearchBy(this.value)">
             </div>
-            <div class="keywords">
-
+            <div class="words-container">
+                <div class="keywords"></div>
+                <a onclick="revealKeyWords()">More</a>
             </div>
-            <a onclick="revealKeyWords()">More</a>
         </section>
         <main>
             <div class="img-gallery">
 
             </div>
         </main>
-        <footer>
+        <footer class="layout">
             <h2>©CoffeeRights 2021</h2>
         </footer>
     </div>
@@ -50,7 +50,7 @@
                 <div class="line-input">
                     <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
                         oninput="onUpdateText(this.value)">
-                    <button  class="add-line" onclick="onNewLineInput()"></button>
+                    <button class="add-line" onclick="onNewLineInput()"></button>
                     <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
                         oninput="onUpdateText(this.value)">
                 </div>
@@ -58,7 +58,7 @@
                     <button class="switch-lines" onclick="onSwitchLine()"></button>
                     <button class="delete-line" onclick="onDeleteLine()"></button>
                     <button class="increase-size" onclick="onChangeTextSize(true)"></button> <button
-                    class="decrease-size" onclick="onChangeTextSize(false)"></button>
+                        class="decrease-size" onclick="onChangeTextSize(false)"></button>
                 </div>
                 <div class="movement-container">
                     <button class="move-up" onclick="onMoveLine(true)"></button>
@@ -75,7 +75,8 @@
                 </div>
                 <div class="font-container">
                     <label for="color-input">Color: </label>
-                    <input class="color-input-btn" type="color" id="color-input" name="color-input" onchange="onSetColor(this.value)">
+                    <input class="color-input-btn" type="color" id="color-input" name="color-input"
+                        onchange="onSetColor(this.value)">
                     <select onchange="onSetFont(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>

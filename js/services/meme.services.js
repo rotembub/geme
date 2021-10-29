@@ -95,7 +95,7 @@ var gImgs = [
     },
 
 ];
-
+var gCanvasSize; ///////////////////////
 var gMeme = {
     selectedImgId: null,
     selectedLineIdx: 0,
@@ -106,7 +106,7 @@ var gMeme = {
             align: 'left',
             color: 'white',
             font: 'Impact',
-            pos: { x: 250, y: 50 },
+            pos: { x: 50, y: 50 },
             lineLength: null,
         }
     ]
@@ -141,9 +141,18 @@ function getgMemeImg() {
     return getImgById(gMeme.selectedImgId).url;
 }
 
-function getMeme() {
-    return gMeme;
+function getMeme(canvasSize) {
+    return gMeme
 }
+
+// function updateMemeLineLocations() {
+//     var canvasMeasures = getCanvasMeasures();
+//     if (canvasMeasures.width !== 500) {
+//         gMeme.lines.forEach(line => {
+//             line.pos.x = canvasMeasures.width / 2;
+//         });
+//     }
+// }
 
 function increaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size++;
@@ -155,7 +164,7 @@ function decreaseTextSize() {
     // setMemeLinesBorders();
 }
 
-function changeTextPos(x, y = gMeme.lines[gMeme.selectedLineIdx].pos.y) {
+function changeTextPos(x, y) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
     gMeme.lines[gMeme.selectedLineIdx].pos.y = y;
     // console.log('hi', x ,gMeme.lines[gMeme.selectedLineIdx].pos.x);
@@ -172,18 +181,19 @@ function moveTextDown() {
 }
 
 function createNewLine() {
+    var canvasMeasures = getCanvasMeasures();
     var newLine = {
         txt: 'I never eat Falafel',
         size: 30,
         align: 'left',
         color: 'white',
         font: 'Impact',
-        pos: { x: 250, y: 450 },
+        pos: { x: canvasMeasures.width / 2, y: canvasMeasures.height - 50 },
         lineLength: null,
     }
     if (gMeme.lines.length === 0) newLine.pos.y = 50;
     if (gMeme.lines.length >= 2) {
-        newLine.pos.y = 250;
+        newLine.pos.y = canvasMeasures.height / 2;
     }
     gMeme.lines.push(newLine);
     // setMemeLinesBorders();
@@ -238,6 +248,7 @@ function setMemeLinesBorders() {
 
 // i could perhaps make it prettier get back to it later:
 function alignLines(side) {
+    var canvasMeasures = getCanvasMeasures(); ///////////////////////////////////////////////////////
     var xLocation;
     switch (side) {
         case 'left':

@@ -8,6 +8,7 @@ var gCurrImage;
 var gSavedMemes;
 var gSearchBy;
 var gIsSearching = false;
+var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 function initCanvas() {
@@ -23,6 +24,12 @@ function loadSavedMemes() {
     if (!memes) return [];
     else return memes;
 }
+// function renderCanvas() { 
+//     gCtx.save()
+//     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+//     renderText();
+//     gCtx.restore()
+// }
 
 // click and drag functions:
 function addListeners() {
@@ -44,12 +51,12 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchend', onUp)
 }
 // come back to it later
-function resizeCanvas() {
-    const elContainer = document.querySelector('.editor-container')
-    gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
-}
-
+// function resizeCanvas() {
+//     const elContainer = document.querySelector('.canvas-container')
+//     gElCanvas.width = elContainer.offsetWidth
+//     gElCanvas.height = elContainer.offsetHeight
+//     console.log('here');
+// }
 
 
 function onDown(event) {
@@ -57,6 +64,7 @@ function onDown(event) {
     console.log(pos);
     gIsClicked = isLineClicked(pos);
     if (gIsClicked) {
+        gStartPos = pos;
         renderText(); // WATCHOUT completely negates the shadow mark effect
         markSelected();
     }
@@ -81,6 +89,7 @@ function getEvPos(ev) {
         y: ev.offsetY
     }
     if (gTouchEvs.includes(ev.type)) {
+        // console.log(ev);
         ev.preventDefault()
         ev = ev.changedTouches[0]
         pos = {
@@ -221,6 +230,7 @@ function initialText() {
         setLineLength(i, gCtx.measureText(meme.lines[i].txt).width);
         var x = meme.lines[i].pos.x;
         var y = meme.lines[i].pos.y;
+        console.log('x,y:', x, y);
         // gCtx.direction = 'ltr';
         // gCtx.textBaseline = 'middle';
         // gCtx.textAlign = gAlign;
@@ -325,4 +335,10 @@ function onIncreaseFont(word) {
     increaseRate(word);
     displayKeyWords();
     setSearchBy(word);
+}
+
+function getCanvasMeasures() {
+    // console.log(window.screen.width);
+    if (window.innerWidth <= 850) return { width: 250, height: 250 };
+    return { width: 500, height: 500 };
 }
