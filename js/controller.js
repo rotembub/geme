@@ -173,7 +173,8 @@ function onMoveLine(isUp) {
 }
 
 function onNewLineInput() {
-    document.querySelector('.lower-text').style.visibility = 'visible';
+    // document.querySelector('.lower-text').style.visibility = 'visible';
+    document.querySelector('#upper-text').value = '';
     createNewLine(); // WATCHOUT 
     setCurrLine(); // WATCHOUT 
 }
@@ -360,4 +361,8 @@ function setCanvasMeasures() {
         gElCanvas.height = 500;
         // loadImage();
     }
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }

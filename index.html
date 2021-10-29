@@ -10,12 +10,14 @@
 </head>
 
 <body onload="init()">
+    <div class="mobile-screen" onclick="toggleMenu()"></div>
     <div class="container">
         <header class="layout">
             <div class="logo"></div>
+            <div class="burger-menu" onclick="toggleMenu()"></div>
             <div class="header-inner-container">
-                <h2 onclick="renderImages()">gallery</h2>
-                <h2 onclick="displaySavedMemes()">memes</h2>
+                <h2 onclick="renderImages()">Gallery</h2>
+                <h2 onclick="displaySavedMemes()">Memes</h2>
             </div>
         </header>
         <section class="search-bar layout">
@@ -48,17 +50,19 @@
             <div class="control-box">
 
                 <div class="line-input">
-                    <input type="text" id="upper-text" name="upper-text" placeholder="Upper Text Here"
+                    <input type="text" id="upper-text" name="upper-text" placeholder="Enter Text Here"
                         oninput="onUpdateText(this.value)">
-                    <button class="add-line" onclick="onNewLineInput()"></button>
-                    <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
-                        oninput="onUpdateText(this.value)">
+
+                    <!-- <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
+                        oninput="onUpdateText(this.value)"> -->
                 </div>
                 <div class="edit-btns">
+                    <button class="add-line" onclick="onNewLineInput()"></button>
                     <button class="switch-lines" onclick="onSwitchLine()"></button>
                     <button class="delete-line" onclick="onDeleteLine()"></button>
                     <button class="increase-size" onclick="onChangeTextSize(true)"></button> <button
                         class="decrease-size" onclick="onChangeTextSize(false)"></button>
+
                 </div>
                 <div class="movement-container">
                     <!-- <button class="move-up" onclick="onMoveLine(true)"></button>
@@ -66,23 +70,31 @@
                     <button class="align-left" onclick="onAlignLeft()"></button>
                     <button class="align-center" onclick="onAlignCenter()"></button>
                     <button class="align-right" onclick="onAlignRight()"></button>
-
-                </div>
-                <div class="media-container">
-                    <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
-                    <button class="share-facebook" onclick="uploadImg()"></button>
-                    <div class="share-container"></div>
-                    <input type="file" class="file-input btn" name="image" onchange="onUpload(event)" />
-                </div>
-                <div class="font-container">
-                    <label for="color-input">Color: </label>
-                    <input class="color-input-btn" type="color" id="color-input" name="color-input"
-                        onchange="onSetColor(this.value)">
                     <select onchange="onSetFont(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>
                         <option value="Verdana">Verdana</option>
                     </select>
+                    <input class="color-input-btn" type="color" id="color-input" name="color-input"
+                        onchange="onSetColor(this.value)">
+
+                </div>
+                <div class="media-container">
+
+                    <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
+                    <label for="file-upload">Upload</label>
+                    <input type="file" id="file-upload" class="file-input btn" name="image"
+                        onchange="onUpload(event)" />
+
+                    <button class="share-facebook" onclick="uploadImg()"></button>
+                    <div class="share-container"></div>
+
+
+                </div>
+                <div class="font-container">
+
+
+
                 </div>
 
             </div>
