@@ -93,9 +93,11 @@ header .logo{
 .words-container{
     display: flex;
 }
-::placeholder { 
-    color: white;
+.search-input::placeholder { 
+    color: gray;
     opacity: 1; 
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 main{
