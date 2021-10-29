@@ -212,7 +212,7 @@ function updateLineFont(font) {
 function updateLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
-
+// problem in here maybe when canvas size change
 function setLineLength(lineIdx, length) {
     gMeme.lines[lineIdx].lineLength = length;
 }
@@ -220,8 +220,8 @@ function setLineLength(lineIdx, length) {
 function isLineClicked(pos) {
     for (var i = 0; i < gMeme.lines.length; i++) {
         var currLine = gMeme.lines[i];
-        console.log(currLine.lineLength);
-        console.log(currLine.pos.x);
+        console.log('currLine length',currLine.lineLength);
+        console.log('currline pos x',currLine.pos.x);
         if (pos.x >= currLine.pos.x && pos.x < currLine.pos.x + currLine.lineLength && pos.y >= currLine.pos.y - currLine.size && pos.y <= currLine.pos.y) {
             console.log(true);
             gMeme.selectedLineIdx = i; // WATCHOUT
@@ -255,10 +255,10 @@ function alignLines(side) {
             xLocation = 20;
             break;
         case 'right':
-            xLocation = 500;
+            xLocation = canvasMeasures.width;
             break;
         case 'center':
-            xLocation = 250;
+            xLocation = canvasMeasures.width/2;
             break;
     }
     gMeme.lines.forEach(line => {

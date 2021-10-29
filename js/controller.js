@@ -8,11 +8,11 @@ var gCurrImage;
 var gSavedMemes;
 var gSearchBy;
 var gIsSearching = false;
-var gStartPos;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
+    setCanvasMeasures();
     gCtx = gElCanvas.getContext('2d');
     gSavedMemes = loadSavedMemes() // watchout
     addListeners();
@@ -35,10 +35,11 @@ function loadSavedMemes() {
 function addListeners() {
     addMouseListeners();
     addTouchListeners();
-    // window.addEventListener('resize', () => {
-    //     resizeCanvas()
-    //     renderCanvas()
-    // })
+    window.addEventListener('resize', () => {
+        setCanvasMeasures();
+        loadImage();
+        renderText();
+    })
 }
 function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
@@ -64,7 +65,6 @@ function onDown(event) {
     console.log(pos);
     gIsClicked = isLineClicked(pos);
     if (gIsClicked) {
-        gStartPos = pos;
         renderText(); // WATCHOUT completely negates the shadow mark effect
         markSelected();
     }
@@ -103,7 +103,7 @@ function getEvPos(ev) {
 
 function renderImages() {
     var images = getImgs();
-    console.log(images);
+    // console.log(images);
     var elGallery = document.querySelector('.img-gallery');
     var strHtml = images.map(img => {
         if (gIsSearching) {
@@ -142,7 +142,7 @@ function loadImage() {
 }
 function drawImg() {
     gCtx.drawImage(gCurrImage, 0, 0, gElCanvas.width, gElCanvas.height);
-    initialText(); // WATCHOUT TRYING SOMETHING
+    // initialText(); // WATCHOUT TRYING SOMETHING
 }
 
 function clearCanvas() {
@@ -226,11 +226,11 @@ function onDownloadImg(elAnchor) {
 function initialText() {
     var meme = getMeme();
     for (var i = 0; i < meme.lines.length; i++) {
-        // console.log(gCtx.measureText(meme.lines[i].txt).width);
+        // console.log(gElCanvas.width, gElCanvas.height);
         setLineLength(i, gCtx.measureText(meme.lines[i].txt).width);
         var x = meme.lines[i].pos.x;
         var y = meme.lines[i].pos.y;
-        console.log('x,y:', x, y);
+        // console.log('x,y:', x, y);
         // gCtx.direction = 'ltr';
         // gCtx.textBaseline = 'middle';
         // gCtx.textAlign = gAlign;
@@ -338,7 +338,25 @@ function onIncreaseFont(word) {
 }
 
 function getCanvasMeasures() {
-    // console.log(window.screen.width);
-    if (window.innerWidth <= 850) return { width: 250, height: 250 };
+    console.log('hi measure canvas');
+    if (window.innerWidth <= 850) {
+        // setCanvasMeasures();
+        return { width: 250, height: 250 };
+    }
+    // setCanvasMeasures();
     return { width: 500, height: 500 };
+}
+
+function setCanvasMeasures() {
+    if (window.innerWidth <= 850) {
+        if (gElCanvas.width === 250) return; //////////////////////
+        gElCanvas.width = 250;
+        gElCanvas.height = 250;
+        // loadImage();
+    } else {
+        if (gElCanvas.width === 500) return; //////////////////////
+        gElCanvas.width = 500;
+        gElCanvas.height = 500;
+        // loadImage();
+    }
 }
