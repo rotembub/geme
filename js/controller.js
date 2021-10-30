@@ -344,15 +344,13 @@ function getCanvasMeasures() {
 
 function setCanvasMeasures() {
     if (window.innerWidth <= 850) {
-        if (gElCanvas.width === 250) return; //////////////////////
+        if (gElCanvas.width === 250) return; //WATCHOUT
         gElCanvas.width = 250;
         gElCanvas.height = 250;
-        // loadImage();
     } else {
-        if (gElCanvas.width === 500) return; //////////////////////
+        if (gElCanvas.width === 500) return; //WATCHOUT
         gElCanvas.width = 500;
         gElCanvas.height = 500;
-        // loadImage();
     }
 }
 

@@ -100,7 +100,7 @@ var gImgs = [
 ];
 
 
-var gCanvasSize; ///////////////////////
+var gCanvasSize; // not in use
 var gMeme = {
     selectedImgId: null,
     selectedLineIdx: 0,
@@ -115,13 +115,7 @@ var gMeme = {
             lineLength: null,
         }
 
-    ], //////////////////////////////////////////
-    // emojis: [{
-    //     txt: '',
-    //     size: 30,
-    //     pos: { x: 150, y: 150 },
-    //     lineLength: null,
-    // }]
+    ],
 }
 mapKeyWords();
 
@@ -203,7 +197,6 @@ function createNewLine(text = 'I never eat Falafel') {
         newLine.pos.y = canvasMeasures.height / 2;
     }
     gMeme.lines.push(newLine);
-    // setMemeLinesBorders();
 }
 
 function setCurrLine() {
@@ -219,7 +212,7 @@ function updateLineFont(font) {
 function updateLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
-// problem in here maybe when canvas size change ,FIXED (i think)
+// problem in here, maybe caused by canvas size changes ,FIXED (i think)
 function setLineLength(lineIdx, length) {
     gMeme.lines[lineIdx].lineLength = length;
 }
@@ -255,7 +248,7 @@ function isLineClicked(pos) {
 
 // i could perhaps make it prettier get back to it later:
 function alignLines(side) {
-    var canvasMeasures = getCanvasMeasures(); ///////////////////////////////////////////////////////
+    var canvasMeasures = getCanvasMeasures(); //WATCHOUT
     var xLocation;
     switch (side) {
         case 'left':
