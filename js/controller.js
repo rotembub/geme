@@ -397,3 +397,19 @@ function onTranslate() {
         else element.innerText = getTrans(elDataTrans);
     });
 }
+
+function markHeadings(pressed) {
+    var elHeadingGallery = document.querySelector('.h-gallery');
+    var elHeadingMemes = document.querySelector('.h-memes');
+    if (pressed === 'gallery') {
+        renderImages();
+        if (elHeadingGallery.classList.contains('pressed')) return;
+        elHeadingMemes.classList.toggle('pressed');
+        elHeadingGallery.classList.toggle('pressed');
+    } else if (pressed === 'memes') {
+        displaySavedMemes();
+        if (elHeadingMemes.classList.contains('pressed')) return;
+        elHeadingMemes.classList.toggle('pressed');
+        elHeadingGallery.classList.toggle('pressed');
+    }
+}

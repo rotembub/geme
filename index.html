@@ -16,17 +16,16 @@
             <div class="logo"></div>
             <div class="burger-menu" onclick="toggleMenu()"></div>
             <div class="header-inner-container">
-                <h2 onclick="renderImages()" data-trans="gallery">Gallery</h2>
-                <h2 onclick="displaySavedMemes()" data-trans="memes">Memes</h2>
+                <h2 class="h-gallery pressed" onclick="markHeadings('gallery')" data-trans="gallery">Gallery</h2>
+                <h2 class="h-memes" onclick="markHeadings('memes')" data-trans="memes">Memes</h2>
                 <select class="bg-info" onchange="onSetLang(this.value)">
                     <option value="en">English</option>
                     <option value="he">עברית</option>
                 </select>
             </div>
         </header>
-        <section class="search-bar layout">
+        <!-- <section class="search-bar layout">
             <div class="input-container">
-                <!-- <label for="search-bar-input">Search:</label> -->
                 <input type="search" class="search-input" name="search-bar-input" id="search-bar-input"
                     placeholder="Search" data-trans="search" oninput="setSearchBy(this.value)">
             </div>
@@ -34,11 +33,19 @@
                 <div class="keywords"></div>
                 <button class="btn-more" onclick="revealKeyWords(this)" data-trans="more">More</button>
             </div>
-        </section>
-        <main>
-            <div class="img-gallery">
-
-            </div>
+        </section> -->
+        <main class="layout">
+            <section class="search-bar">
+                <div class="input-container">
+                    <input type="search" class="search-input" name="search-bar-input" id="search-bar-input"
+                        placeholder="Search" data-trans="search" oninput="setSearchBy(this.value)">
+                </div>
+                <div class="words-container">
+                    <div class="keywords"></div>
+                    <button class="btn-more" onclick="revealKeyWords(this)" data-trans="more">More</button>
+                </div>
+            </section>
+            <div class="img-gallery"></div>
         </main>
         <footer class="layout">
             <h2 data-trans="copyrights">©Coffeerights 2021</h2>
@@ -54,8 +61,8 @@
             <div class="control-box">
 
                 <div class="line-input">
-                    <input type="text" id="upper-text" name="upper-text" data-trans="input" placeholder="Enter Text Here"
-                        oninput="onUpdateText(this.value)">
+                    <input type="text" id="upper-text" name="upper-text" data-trans="input"
+                        placeholder="Enter Text Here" oninput="onUpdateText(this.value)">
 
                     <!-- <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
                         oninput="onUpdateText(this.value)"> -->
@@ -93,14 +100,7 @@
                 </div>
                 <div class="stickers-control">
                     <button onclick="onShowNext(false)">⬅</button>
-                    <div class="stickers-container">
-                        <span onclick="onAddStickers(this)">😂</span>
-                        <span onclick="onAddStickers(this)">💩</span>
-                        <span onclick="onAddStickers(this)">🍔</span>
-                        <span onclick="onAddStickers(this)">🎁</span>
-                        <span onclick="onAddStickers(this)">🎵</span>
-                        <span onclick="onAddStickers(this)">😈</span>
-                    </div>
+                    <div class="stickers-container"></div>
                     <button onclick="onShowNext(true)">➡</button>
                 </div>
                 <div class="font-container">

@@ -2,8 +2,14 @@
     box-sizing: border-box;
 }
 
+/* just fonts for headings and footers */
+@font-face{
+    font-family: Poppins;
+    src: url(../fonts/Poppins/Poppins-Light.ttf);
+}
+
 body{
-    background-color: #383B42;
+    background-color: #22252C;
 }
 
 .hebrew{
@@ -31,7 +37,7 @@ header{
     justify-content: space-around;
     align-items: center;
     border-radius: 100vh;
-    /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    font-family: Poppins;
     color: white;
     margin-bottom: 10px;
 }
@@ -65,6 +71,7 @@ header .burger-menu{
 .bg-info{
     height: fit-content;
 }
+
 .search-bar{
     width: 100%;
     grid-area: search-bar;
@@ -96,6 +103,7 @@ header .burger-menu{
     max-height: 50px;
     margin-inline-start: 10px;
     border-radius: 15px;
+    align-self: center;
 }
 .search-bar .keywords>*:not(button) {
     padding-left: 10px;
@@ -108,12 +116,11 @@ header .burger-menu{
     display: inline;
 }
 .search-input{
-    background-color: black;
+    background-color: #22252C;
     border-radius: 100vh;
     color: white;
     height: 50px;
-    width: 100%;
-    
+    width: 100%;  
 }
 .words-container{
     display: flex;
@@ -122,15 +129,20 @@ header .burger-menu{
     cursor: pointer;
 }
 .search-input::placeholder { 
-    color: gray;
+    color: #909193;
     opacity: 1; 
-    text-align: center;
+    text-align: start;
     font-size: 1.5rem;
+    font-size: Poppins;
+    padding-inline-start: 20px;
 }
 
 main{
     grid-area: main;
-
+    background-color: #383B42;
+    padding: 10px;
+    border-radius: 10px;
+    font-family: Poppins;
 }
 .img-gallery{
     display: grid;
@@ -155,8 +167,15 @@ footer{
     justify-content: center;
     border-radius: 100vh;
     margin-top: 10px;
+    font-family: Poppins;
 }
-
+.pressed{
+    background-color: white;
+    color: #21AC91;
+    border-radius: 3em;
+    padding-right: 10px;
+    padding-left: 10px;
+}
 
 /* .meme-editor{
     position: absolute;
