@@ -215,6 +215,7 @@ canvas{
 
 .media-container{
     display: flex;
+    justify-content: center;
 }
 .media-container a:not(.share-container a){
     height: 50px;
