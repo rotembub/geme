@@ -16,19 +16,23 @@
             <div class="logo"></div>
             <div class="burger-menu" onclick="toggleMenu()"></div>
             <div class="header-inner-container">
-                <h2 onclick="renderImages()">Gallery</h2>
-                <h2 onclick="displaySavedMemes()">Memes</h2>
+                <h2 onclick="renderImages()" data-trans="gallery">Gallery</h2>
+                <h2 onclick="displaySavedMemes()" data-trans="memes">Memes</h2>
+                <select class="bg-info" onchange="onSetLang(this.value)">
+                    <option value="en">English</option>
+                    <option value="he">עברית</option>
+                </select>
             </div>
         </header>
         <section class="search-bar layout">
             <div class="input-container">
                 <!-- <label for="search-bar-input">Search:</label> -->
                 <input type="search" class="search-input" name="search-bar-input" id="search-bar-input"
-                    placeholder="Search" oninput="setSearchBy(this.value)">
+                    placeholder="Search" data-trans="search" oninput="setSearchBy(this.value)">
             </div>
             <div class="words-container">
                 <div class="keywords"></div>
-                <button class="btn-more" onclick="revealKeyWords(this)">More</button>
+                <button class="btn-more" onclick="revealKeyWords(this)" data-trans="more">More</button>
             </div>
         </section>
         <main>
@@ -37,7 +41,7 @@
             </div>
         </main>
         <footer class="layout">
-            <h2>©Coffeerights 2021</h2>
+            <h2 data-trans="copyrights">©Coffeerights 2021</h2>
         </footer>
     </div>
 
@@ -50,7 +54,7 @@
             <div class="control-box">
 
                 <div class="line-input">
-                    <input type="text" id="upper-text" name="upper-text" placeholder="Enter Text Here"
+                    <input type="text" id="upper-text" name="upper-text" data-trans="input" placeholder="Enter Text Here"
                         oninput="onUpdateText(this.value)">
 
                     <!-- <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
@@ -80,8 +84,8 @@
 
                 </div>
                 <div class="media-container">
-                    <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
-                    <label for="file-upload">Upload</label>
+                    <a href="#" onclick="onDownloadImg(this)" data-trans="download" download="meme.jpg">Download</a>
+                    <label for="file-upload" data-trans="upload">Upload</label>
                     <input type="file" id="file-upload" class="file-input btn" name="image"
                         onchange="onUpload(event)" />
                     <button class="share-facebook" onclick="uploadImg()"></button>
@@ -113,6 +117,7 @@
 
 
     <script src="js/services/storage.services.js"></script>
+    <script src="js/services/i18n.services.js"></script>
     <script src="js/services/meme.services.js"></script>
     <script src="js/services/share.services.js"></script>
     <script src="js/controller.js"></script>

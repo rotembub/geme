@@ -25,12 +25,6 @@ function loadSavedMemes() {
     if (!memes) return [];
     else return memes;
 }
-// function renderCanvas() { 
-//     gCtx.save()
-//     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
-//     renderText();
-//     gCtx.restore()
-// }
 
 // click and drag functions:
 function addListeners() {
@@ -52,14 +46,6 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchend', onUp)
 }
-// come back to it later
-// function resizeCanvas() {
-//     const elContainer = document.querySelector('.canvas-container')
-//     gElCanvas.width = elContainer.offsetWidth
-//     gElCanvas.height = elContainer.offsetHeight
-//     console.log('here');
-// }
-
 
 function onDown(event) {
     var pos = getEvPos(event);
@@ -248,7 +234,8 @@ function initialText() {
 
 // a failed attemped need to either fix or delete
 // GET BACK TO IT LATER CALLING DIRECTLLY TO gMeme need a work around
-// prototype: currently NOT IN USE
+// prototype: 
+//currently NOT IN USE
 function drawLineBorders() {
     gMeme.lines[gMeme.selectedLineIdx]
     var x = gMeme.lines[gMeme.selectedLineIdx].border.xStart;
@@ -294,6 +281,7 @@ function loadInputImage(ev, drawImage) {
 
 
 // need to figure out a way of allowing it to be edited , set opened meme as gMeme get back to it later figure out name = id cause it has none
+// update: dont think its possible to edit a made canvas pic
 function displaySavedMemes() {
     var elGallery = document.querySelector('.img-gallery');
     var strHtml = gSavedMemes.map(meme => {
@@ -317,7 +305,7 @@ function displayKeyWords() {
     var keywords = getKeyWords();
     var strHTML = ''
     for (var key in keywords) {
-        strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);" onclick="onIncreaseFont('${key}')">${key}</span>`;
+        strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);" data-trans="${key}" onclick="onIncreaseFont('${key}')">${key}</span>`;
     }
     // strHTML += '<a onclick="revealKeyWords()">More</a>'
     // console.log(strHTML);
@@ -387,4 +375,23 @@ function renderStickers() {
 function onShowNext(isNext){
     showNext(isNext);
     renderStickers();
+}
+
+function onSetLang(lang) {
+    setLang(lang);
+    var elBody = document.querySelector('body');
+    if (lang === 'he') elBody.classList.add('hebrew');
+    else elBody.classList.remove('hebrew');
+    onTranslate();
+}
+
+
+function onTranslate() {
+    var elements = document.querySelectorAll('[data-trans]');
+    elements.forEach(element => {
+        var elDataTrans = element.dataset.trans;
+        // console.log('here' , element);
+        if (element.nodeName === 'INPUT') element.placeholder = getTrans(elDataTrans);
+        else element.innerText = getTrans(elDataTrans);
+    });
 }

@@ -6,7 +6,9 @@ body{
     background-color: #383B42;
 }
 
-
+.hebrew{
+    direction: rtl;
+}
 
 .container{
     text-align: center;
@@ -72,14 +74,16 @@ header .burger-menu{
     border-radius: 100vh;
     display: flex;
     flex-wrap: wrap;
-    padding: 0 10px 0 10px;
-    margin-left: 10px;
+    /* padding: 0 10px 0 10px; */
+    margin-inline-start: 10px;
+    padding-inline-end: 15px;
+    padding-inline-start: 15px;
 }
 .btn-more{
     background: linear-gradient(90deg, rgba(0,36,17,1) 0%, #129EAD 0%, #2CB77B 100%);
     color: white;
     max-height: 50px;
-    margin-left: 10px;
+    margin-inline-start: 10px;
     border-radius: 15px;
 }
 .search-bar .keywords>*:not(button) {
@@ -159,6 +163,7 @@ footer{
     height: 100%;
     display: none;
     background: linear-gradient(90deg, rgba(0,36,17,1) 0%, #129EAD 0%, #2CB77B 100%);
+    direction:ltr !important;
 }
 
 
@@ -328,6 +333,10 @@ button.move-down{
     }
     footer{
         max-width: 900px;
+    }
+    .header-inner-container{
+        width: 30%;
+        margin-inline-start: 15px;
     }
 
 }
