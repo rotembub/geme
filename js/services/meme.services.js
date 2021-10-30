@@ -99,8 +99,6 @@ var gImgs = [
 
 ];
 
-
-var gCanvasSize; // not in use
 var gMeme = {
     selectedImgId: null,
     selectedLineIdx: 0,
@@ -118,8 +116,6 @@ var gMeme = {
     ],
 }
 mapKeyWords();
-
-// setMemeLinesBorders(); // not sure if im gonna keep it
 
 function getImgs() {
     return gImgs;
@@ -150,15 +146,6 @@ function getgMemeImg() {
 function getMeme(canvasSize) {
     return gMeme
 }
-
-// function updateMemeLineLocations() {
-//     var canvasMeasures = getCanvasMeasures();
-//     if (canvasMeasures.width !== 500) {
-//         gMeme.lines.forEach(line => {
-//             line.pos.x = canvasMeasures.width / 2;
-//         });
-//     }
-// }
 
 function increaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size++;
@@ -232,18 +219,6 @@ function isLineClicked(pos) {
     }
     return false;
 }
-
-//prototype: failed attempt might need to remove it completely
-// function setMemeLinesBorders() {
-//     gMeme.lines.forEach(line => {
-//         line.border = {
-//             xStart: line.pos.x - line.txt.length * 3,
-//             yStart: line.pos.y - line.size,
-//             xEnd: line.pos.x + line.txt.length * 3,
-//             yEnd: line.pos.y + line.size,
-//         };
-//     });
-// }
 
 
 // i could perhaps make it prettier get back to it later:

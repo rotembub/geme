@@ -7,7 +7,7 @@ var gTrans = {
     },
     gallery: {
         en: 'Gallery',
-        he: 'כותרת'
+        he: 'גלריה'
     },
     search: {
         en: 'Search',
