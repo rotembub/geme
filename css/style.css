@@ -315,6 +315,9 @@ body.menu-open .mobile-screen {
 .stickers-control{
     display: flex;
 }
+.color-input-btn{
+    height: 50px;
+}
 
 .align-right{
     background-image: url(../ICONS/align-to-right.png);
