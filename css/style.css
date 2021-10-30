@@ -42,7 +42,7 @@ header{
     margin-bottom: 10px;
 }
 header .logo{
-    background-image: url('/ICONS/LOGO.png');
+    background-image: url(../ICONS/LOGO.png);
     background-repeat:no-repeat;
     background-size:contain;
     height:50px;
@@ -52,7 +52,7 @@ header .logo{
     
 }
 header .burger-menu{
-    background-image: url('/ICONS/burger-btn.png');
+    background-image: url(../ICONS/burger-btn.png);
     background-repeat:no-repeat;
     background-size:contain;
     height: 50px;
@@ -497,6 +497,7 @@ button.move-down{
         transform: translateX(100%);
         border-inline-start: 1px solid #292929;
         transition: transform .6s, box-shadow .6s;
+        z-index: 1;
     }
     body.menu-open .header-inner-container {
         transform: translateX(0);
