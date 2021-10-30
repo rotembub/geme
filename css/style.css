@@ -57,6 +57,13 @@ header .burger-menu{
     display: flex;
     justify-content: space-between;
     width: 25%;
+    align-items: center;
+}
+.header-inner-container>*:hover{
+    cursor: pointer;
+}
+.bg-info{
+    height: fit-content;
 }
 .search-bar{
     width: 100%;
@@ -74,10 +81,14 @@ header .burger-menu{
     border-radius: 100vh;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     /* padding: 0 10px 0 10px; */
     margin-inline-start: 10px;
     padding-inline-end: 15px;
     padding-inline-start: 15px;
+}
+.keywords>*:hover{
+    cursor: pointer;
 }
 .btn-more{
     background: linear-gradient(90deg, rgba(0,36,17,1) 0%, #129EAD 0%, #2CB77B 100%);
@@ -106,6 +117,9 @@ header .burger-menu{
 }
 .words-container{
     display: flex;
+}
+.words-container .btn-more{
+    cursor: pointer;
 }
 .search-input::placeholder { 
     color: gray;
