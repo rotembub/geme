@@ -37,7 +37,7 @@
             </div>
         </main>
         <footer class="layout">
-            <h2>©CoffeeRights 2021</h2>
+            <h2>©Coffeerights 2021</h2>
         </footer>
     </div>
 
@@ -80,16 +80,24 @@
 
                 </div>
                 <div class="media-container">
-
                     <a href="#" onclick="onDownloadImg(this)" download="meme.jpg">Download</a>
                     <label for="file-upload">Upload</label>
                     <input type="file" id="file-upload" class="file-input btn" name="image"
                         onchange="onUpload(event)" />
-
                     <button class="share-facebook" onclick="uploadImg()"></button>
                     <div class="share-container"></div>
-
-
+                </div>
+                <div class="stickers-control">
+                    <button onclick="onShowNext(false)">⬅</button>
+                    <div class="stickers-container">
+                        <span onclick="onAddStickers(this)">😂</span>
+                        <span onclick="onAddStickers(this)">💩</span>
+                        <span onclick="onAddStickers(this)">🍔</span>
+                        <span onclick="onAddStickers(this)">🎁</span>
+                        <span onclick="onAddStickers(this)">🎵</span>
+                        <span onclick="onAddStickers(this)">😈</span>
+                    </div>
+                    <button onclick="onShowNext(true)">➡</button>
                 </div>
                 <div class="font-container">
 

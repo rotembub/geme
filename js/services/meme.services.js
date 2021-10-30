@@ -1,6 +1,9 @@
 'use strict'
 
 var gKeywords = { 'happy': 12, 'funny puk': 1 }
+var gStickersIdx = 0;
+const StickersPageSize = 3;
+var gStickers = ['🎁', '😈', '💩', '🎵', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '💯', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎'];
 
 var gImgs = [
     {
@@ -95,6 +98,8 @@ var gImgs = [
     },
 
 ];
+
+
 var gCanvasSize; ///////////////////////
 var gMeme = {
     selectedImgId: null,
@@ -109,7 +114,14 @@ var gMeme = {
             pos: { x: 50, y: 50 },
             lineLength: null,
         }
-    ]
+
+    ], //////////////////////////////////////////
+    // emojis: [{
+    //     txt: '',
+    //     size: 30,
+    //     pos: { x: 150, y: 150 },
+    //     lineLength: null,
+    // }]
 }
 mapKeyWords();
 
@@ -180,10 +192,10 @@ function moveTextDown() {
     // setMemeLinesBorders();
 }
 
-function createNewLine() {
+function createNewLine(text = 'I never eat Falafel') {
     var canvasMeasures = getCanvasMeasures();
     var newLine = {
-        txt: 'I never eat Falafel',
+        txt: text,
         size: 30,
         align: 'left',
         color: 'white',
@@ -212,7 +224,7 @@ function updateLineFont(font) {
 function updateLineColor(color) {
     gMeme.lines[gMeme.selectedLineIdx].color = color;
 }
-// problem in here maybe when canvas size change
+// problem in here maybe when canvas size change ,FIXED (i think)
 function setLineLength(lineIdx, length) {
     gMeme.lines[lineIdx].lineLength = length;
 }
@@ -220,8 +232,8 @@ function setLineLength(lineIdx, length) {
 function isLineClicked(pos) {
     for (var i = 0; i < gMeme.lines.length; i++) {
         var currLine = gMeme.lines[i];
-        console.log('currLine length',currLine.lineLength);
-        console.log('currline pos x',currLine.pos.x);
+        console.log('currLine length', currLine.lineLength);
+        console.log('currline pos x', currLine.pos.x);
         if (pos.x >= currLine.pos.x && pos.x < currLine.pos.x + currLine.lineLength && pos.y >= currLine.pos.y - currLine.size && pos.y <= currLine.pos.y) {
             console.log(true);
             gMeme.selectedLineIdx = i; // WATCHOUT
@@ -258,7 +270,7 @@ function alignLines(side) {
             xLocation = canvasMeasures.width;
             break;
         case 'center':
-            xLocation = canvasMeasures.width/2;
+            xLocation = canvasMeasures.width / 2;
             break;
     }
     gMeme.lines.forEach(line => {
@@ -289,4 +301,19 @@ function getKeyWords() {
 
 function increaseRate(word) {
     gKeywords[word]++;
+}
+
+function getStickers() {
+    return gStickers.slice(gStickersIdx * StickersPageSize, (gStickersIdx * StickersPageSize) + StickersPageSize);
+}
+
+function showNext(isNext) {
+    if (isNext) {
+        gStickersIdx++;
+        if (gStickersIdx * StickersPageSize >= gStickers.length) gStickersIdx = 0;
+    }
+    else {
+        if (gStickersIdx === 0) return;
+        gStickersIdx--;
+    }
 }

@@ -80,6 +80,7 @@ header .burger-menu{
     color: white;
     max-height: 50px;
     margin-left: 10px;
+    border-radius: 15px;
 }
 .search-bar .keywords>*:not(button) {
     padding-left: 10px;
@@ -215,9 +216,10 @@ canvas{
 .media-container{
     display: flex;
 }
-.media-container a{
+.media-container a:not(.share-container a){
     height: 50px;
     border: black solid 3px;
+    padding-top: 10px;
 } 
 .file-input{
     display: none;
@@ -226,6 +228,7 @@ canvas{
     display: inline-block;
     border: black solid 3px;
     height: 50px;
+    padding-top: 10px;
 }
 
 .control-box button{
@@ -255,6 +258,19 @@ body.menu-open .mobile-screen {
     pointer-events: auto;
     opacity: 1;
 }
+.stickers-container{
+    border: white solid 1px;
+}
+.stickers-container span{
+    font-size: xx-large;
+}
+.stickers-container span:not(:last-of-type){
+    border-right:white solid 1px;
+}
+.stickers-control{
+    display: flex;
+}
+
 .align-right{
     background-image: url(../ICONS/align-to-right.png);
 } 

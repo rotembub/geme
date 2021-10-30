@@ -10,6 +10,7 @@ var gSearchBy;
 var gIsSearching = false;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
+
 function initCanvas() {
     gElCanvas = document.getElementById('canvas');
     setCanvasMeasures();
@@ -365,4 +366,25 @@ function setCanvasMeasures() {
 
 function toggleMenu() {
     document.body.classList.toggle('menu-open');
+}
+
+function onAddStickers(elEmoji) {
+    console.log(elEmoji.innerText);
+    createNewLine(elEmoji.innerText);
+    setCurrLine();
+    renderText();
+}
+
+function renderStickers() {
+    var stickers = getStickers();
+    var elStickersContainer = document.querySelector('.stickers-container');
+    var strHtml = stickers.map(sticker => {
+        return `<span onclick="onAddStickers(this)">${sticker}</span>`
+    });
+    elStickersContainer.innerHTML = strHtml.join('');
+}
+
+function onShowNext(isNext){
+    showNext(isNext);
+    renderStickers();
 }
