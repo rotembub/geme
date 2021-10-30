@@ -168,28 +168,23 @@ function getMeme(canvasSize) {
 
 function increaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size++;
-    // setMemeLinesBorders();
 }
 
 function decreaseTextSize() {
     gMeme.lines[gMeme.selectedLineIdx].size--;
-    // setMemeLinesBorders();
 }
 
 function changeTextPos(x, y) {
     gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
     gMeme.lines[gMeme.selectedLineIdx].pos.y = y;
     // console.log('hi', x ,gMeme.lines[gMeme.selectedLineIdx].pos.x);
-    // setMemeLinesBorders();
 }
 
 function moveTextUp() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
-    // setMemeLinesBorders();
 }
 function moveTextDown() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
-    // setMemeLinesBorders();
 }
 
 function createNewLine(text = 'I never eat Falafel') {
@@ -246,16 +241,16 @@ function isLineClicked(pos) {
 }
 
 //prototype: failed attempt might need to remove it completely
-function setMemeLinesBorders() {
-    gMeme.lines.forEach(line => {
-        line.border = {
-            xStart: line.pos.x - line.txt.length * 3,
-            yStart: line.pos.y - line.size,
-            xEnd: line.pos.x + line.txt.length * 3,
-            yEnd: line.pos.y + line.size,
-        };
-    });
-}
+// function setMemeLinesBorders() {
+//     gMeme.lines.forEach(line => {
+//         line.border = {
+//             xStart: line.pos.x - line.txt.length * 3,
+//             yStart: line.pos.y - line.size,
+//             xEnd: line.pos.x + line.txt.length * 3,
+//             yEnd: line.pos.y + line.size,
+//         };
+//     });
+// }
 
 
 // i could perhaps make it prettier get back to it later:

@@ -191,6 +191,9 @@ canvas{
     margin: 0;
     background-color: white;
 }
+/* canvas:hover{
+    cursor: grab;
+} */
 
 .opened{
     display: block;
@@ -269,6 +272,9 @@ body.menu-open .mobile-screen {
 }
 .stickers-container span{
     font-size: xx-large;
+}
+.stickers-container span:hover{
+    cursor: pointer;
 }
 .stickers-container span:not(:last-of-type){
     border-right:white solid 1px;

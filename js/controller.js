@@ -53,8 +53,10 @@ function onDown(event) {
     gIsClicked = isLineClicked(pos);
     if (gIsClicked) {
         renderText(); // WATCHOUT completely negates the shadow mark effect
-        markSelected();
-    }
+        // markSelected(); // trying with borders
+        drawLineBorders();
+        document.body.style.cursor = 'grabbing';
+    } else renderText();
 }
 
 function onMove(event) {
@@ -67,7 +69,8 @@ function onMove(event) {
 
 function onUp(event) {
     gIsClicked = false;
-    var pos = getEvPos(event);
+    document.body.style.cursor = 'auto';
+    // var pos = getEvPos(event);
 }
 
 function getEvPos(ev) {
@@ -169,7 +172,8 @@ function onNewLineInput() {
 function onSwitchLine() {
     setCurrLine(); // WATCHOUT 
     renderText();
-    markSelected();
+    // markSelected(); // trying with borders
+    drawLineBorders();
 }
 
 function onSetFont(font) {
@@ -232,23 +236,23 @@ function initialText() {
     }
 }
 
-// a failed attemped need to either fix or delete
-// GET BACK TO IT LATER CALLING DIRECTLLY TO gMeme need a work around
 // prototype: 
-//currently NOT IN USE
 function drawLineBorders() {
-    gMeme.lines[gMeme.selectedLineIdx]
-    var x = gMeme.lines[gMeme.selectedLineIdx].border.xStart;
-    var y = gMeme.lines[gMeme.selectedLineIdx].border.yStart;
-    var width = gMeme.lines[gMeme.selectedLineIdx].border.xEnd - x;
-    var height = gMeme.lines[gMeme.selectedLineIdx].border.yEnd - y;
+    var meme = getMeme();
+    meme.lines[meme.selectedLineIdx]
+    var x = meme.lines[meme.selectedLineIdx].pos.x;
+    var y = meme.lines[meme.selectedLineIdx].pos.y;
+    var width = meme.lines[meme.selectedLineIdx].lineLength;
+    var height = meme.lines[meme.selectedLineIdx].size;
+    console.log(x, y, width, height);
     gCtx.beginPath();
-    gCtx.rect(x, y, width, height);
+    gCtx.rect(x, y, width, -height);
     gCtx.strokeStyle = 'white';
     gCtx.stroke();
 }
 
 // not looking good gotta fix it if there is time
+//currently not in use:
 function markSelected() {
     var meme = getMeme()
     var x = meme.lines[meme.selectedLineIdx].pos.x;
@@ -372,7 +376,7 @@ function renderStickers() {
     elStickersContainer.innerHTML = strHtml.join('');
 }
 
-function onShowNext(isNext){
+function onShowNext(isNext) {
     showNext(isNext);
     renderStickers();
 }
