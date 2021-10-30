@@ -160,6 +160,9 @@ main{
     grid-row: span 1;
     grid-column: span 1;
 }
+.img-gallery>*:hover{
+    cursor: pointer;
+}
 
 footer{
     width: 100%;
