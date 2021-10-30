@@ -78,14 +78,18 @@ function getEvPos(ev) {
         x: ev.offsetX,
         y: ev.offsetY
     }
+    console.log(pos); /////////////
     if (gTouchEvs.includes(ev.type)) {
-        // console.log(ev);
+        console.log(ev);
         ev.preventDefault()
         ev = ev.changedTouches[0]
         pos = {
-            x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-            y: ev.pageY - ev.target.offsetTop - ev.target.clientTop //- 200 // parent element on Absolute position with 200px from the top
+            x: ev.pageX - ev.target.offsetLeft - ev.target.offsetParent.offsetLeft,  // did these changes on saturday 9pm hopefully didnt break the code
+            y: ev.pageY - ev.target.offsetTop - ev.target.offsetParent.offsetTop    // there was problems locating touches on the canvas
         }
+        // these were the original units which worked up untill i changed CSS and everything went off course with touch locations
+        // console.log('x',ev.pageX , ev.target.offsetLeft , ev.target.clientLeft);
+        // console.log('y',ev.pageY , ev.target.offsetPare , ev.target.clientTop);
     }
     console.log(pos);
     return pos
@@ -108,6 +112,9 @@ function renderImages() {
 
 function openEditor(id) {
     // console.log(id);
+    
+    var elMain = document.querySelector('main');       ///////////////////////////
+    elMain.style.display = 'none';                  //////////////////////////////
     updateCurrentgMeme(id);
     var elEditor = document.querySelector('.meme-editor');
     loadImage();
@@ -118,6 +125,8 @@ function openEditor(id) {
 function closeEditor(elEditor) {
     document.querySelector('.share-container').innerHTML = '';
     elEditor.classList.remove('opened');
+    var elMain = document.querySelector('main');       ///////////////////////////
+    elMain.style.display = 'block';                         /////////////////////
 }
 
 // seperating into load and draw functions to prevent image from flashing on change to the canvas

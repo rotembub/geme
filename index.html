@@ -34,6 +34,67 @@
                 <button class="btn-more" onclick="revealKeyWords(this)" data-trans="more">More</button>
             </div>
         </section> -->
+        <section class="meme-editor">
+            <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
+            <div class="editor-container">
+                <div class="canvas-container">
+                    <canvas id="canvas" height="500" width="500"></canvas>
+                </div>
+                <div class="control-box">
+
+                    <div class="line-input">
+                        <input type="text" id="upper-text" name="upper-text" data-trans="input"
+                            placeholder="Enter Text Here" oninput="onUpdateText(this.value)">
+
+                        <!-- <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
+                            oninput="onUpdateText(this.value)"> -->
+                    </div>
+                    <div class="edit-btns">
+                        <button class="add-line" onclick="onNewLineInput()"></button>
+                        <button class="switch-lines" onclick="onSwitchLine()"></button>
+                        <button class="delete-line" onclick="onDeleteLine()"></button>
+                        <button class="increase-size" onclick="onChangeTextSize(true)"></button> <button
+                            class="decrease-size" onclick="onChangeTextSize(false)"></button>
+
+                    </div>
+                    <div class="movement-container">
+                        <!-- <button class="move-up" onclick="onMoveLine(true)"></button>
+                        <button class="move-down" onclick="onMoveLine(false)"></button> -->
+                        <button class="align-left" onclick="onAlignLeft()"></button>
+                        <button class="align-center" onclick="onAlignCenter()"></button>
+                        <button class="align-right" onclick="onAlignRight()"></button>
+                        <select class="font-selector" onchange="onSetFont(this.value)">
+                            <option value="Impact">Impact</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                        <input class="color-input-btn" type="color" id="color-input" name="color-input"
+                            onchange="onSetColor(this.value)">
+
+                    </div>
+                    <div class="media-container">
+                        <a href="#" onclick="onDownloadImg(this)" data-trans="download" download="meme.jpg">Download</a>
+                        <label for="file-upload" data-trans="upload">Upload</label>
+                        <input type="file" id="file-upload" class="file-input btn" name="image"
+                            onchange="onUpload(event)" />
+                        <button class="share-facebook" onclick="uploadImg()"></button>
+                        <div class="share-container"></div>
+                    </div>
+                    <div class="stickers-control">
+                        <button onclick="onShowNext(false)">⬅</button>
+                        <div class="stickers-container"></div>
+                        <button onclick="onShowNext(true)">➡</button>
+                    </div>
+                    <div class="font-container">
+
+
+                        <!-- CHANGES DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+                        <!-- lots of position changes at the last moment hopefully i didnt break anything -->
+                    </div>
+
+                </div>
+            </div>
+        </section>
         <main class="layout">
             <section class="search-bar">
                 <div class="input-container">
@@ -52,66 +113,7 @@
         </footer>
     </div>
 
-    <section class="meme-editor">
-        <button class="btn-close-editor" onclick="closeEditor(this.parentElement)">X</button>
-        <div class="editor-container">
-            <div class="canvas-container">
-                <canvas id="canvas" height="500" width="500" style="margin-top: 100px;"></canvas>
-            </div>
-            <div class="control-box">
 
-                <div class="line-input">
-                    <input type="text" id="upper-text" name="upper-text" data-trans="input"
-                        placeholder="Enter Text Here" oninput="onUpdateText(this.value)">
-
-                    <!-- <input class="lower-text" type="text" name="lower-text" placeholder="Lower Text Here"
-                        oninput="onUpdateText(this.value)"> -->
-                </div>
-                <div class="edit-btns">
-                    <button class="add-line" onclick="onNewLineInput()"></button>
-                    <button class="switch-lines" onclick="onSwitchLine()"></button>
-                    <button class="delete-line" onclick="onDeleteLine()"></button>
-                    <button class="increase-size" onclick="onChangeTextSize(true)"></button> <button
-                        class="decrease-size" onclick="onChangeTextSize(false)"></button>
-
-                </div>
-                <div class="movement-container">
-                    <!-- <button class="move-up" onclick="onMoveLine(true)"></button>
-                    <button class="move-down" onclick="onMoveLine(false)"></button> -->
-                    <button class="align-left" onclick="onAlignLeft()"></button>
-                    <button class="align-center" onclick="onAlignCenter()"></button>
-                    <button class="align-right" onclick="onAlignRight()"></button>
-                    <select class="font-selector" onchange="onSetFont(this.value)">
-                        <option value="Impact">Impact</option>
-                        <option value="Arial">Arial</option>
-                        <option value="Verdana">Verdana</option>
-                    </select>
-                    <input class="color-input-btn" type="color" id="color-input" name="color-input"
-                        onchange="onSetColor(this.value)">
-
-                </div>
-                <div class="media-container">
-                    <a href="#" onclick="onDownloadImg(this)" data-trans="download" download="meme.jpg">Download</a>
-                    <label for="file-upload" data-trans="upload">Upload</label>
-                    <input type="file" id="file-upload" class="file-input btn" name="image"
-                        onchange="onUpload(event)" />
-                    <button class="share-facebook" onclick="uploadImg()"></button>
-                    <div class="share-container"></div>
-                </div>
-                <div class="stickers-control">
-                    <button onclick="onShowNext(false)">⬅</button>
-                    <div class="stickers-container"></div>
-                    <button onclick="onShowNext(true)">➡</button>
-                </div>
-                <div class="font-container">
-
-
-
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 
 
