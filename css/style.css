@@ -70,6 +70,9 @@ header .burger-menu{
 }
 .bg-info{
     height: fit-content;
+    color: white;
+    background-color: #21AC91;
+    border-radius: 3em;
 }
 
 .search-bar{
@@ -266,6 +269,7 @@ canvas{
     color: white;
     padding-right: 5px;
     padding-left: 5px;
+    border-radius: 15px;
 } 
 .file-input{
     display: none;
@@ -278,6 +282,7 @@ canvas{
     color: white;
     padding-right: 5px;
     padding-left: 5px;
+    border-radius: 15px;
 }
 
 .control-box button{
@@ -289,6 +294,7 @@ canvas{
     /* border: none; */
     height: 50px;
     width: 50px;
+    border-radius: 15px;
 }
 /* burger-menu support */
 .mobile-screen {
@@ -324,6 +330,16 @@ body.menu-open .mobile-screen {
 }
 .color-input-btn{
     height: 50px;
+    border-radius: 15px;
+}
+.font-selector{
+    border-radius: 15px;
+    color: white;
+    background-color: transparent;
+}
+.font-selector >*{
+    color: black;
+    background-color: transparent;
 }
 
 .align-right{
