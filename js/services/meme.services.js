@@ -4,7 +4,7 @@ var gKeywords = { 'happy': 12, 'funny puk': 1 }
 var gStickersIdx = 0;
 const StickersPageSize = 3;
 var gStickers = ['🎁', '😈', '💩', '🎵', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '💯', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎'];
-
+var gMeme;
 var gImgs = [
     {
         id: 1,
@@ -99,44 +99,48 @@ var gImgs = [
 
 ];
 
-var gMeme = {
-    selectedImgId: null,
-    selectedLineIdx: 0,
-    lines: [
-        {
-            txt: 'Use the text box',
-            size: 30,
-            align: 'left',
-            color: 'white',
-            font: 'Impact',
-            pos: { x: 50, y: 50 },
-            lineLength: null,
-        }
-
-    ],
-}
 mapKeyWords();
 
 function getImgs() {
     return gImgs;
 }
 
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
+
 function getImgById(imgId) {
     var id = parseInt(imgId);
-    updateGmemeId(id);
+    setCurrMemeImg(id);
     return gImgs.find(img => img.id === parseInt(id));
 }
-
-function updateGmemeId(id) {
-    gMeme.selectedImgId = id;
-    // console.log(gMeme);
+function setNewMeme() {
+    gMeme = _createNewMeme();
+}
+function _createNewMeme() {
+    var newMeme = {
+        selectedImgId: null,
+        selectedLineIdx: 0,
+        lines: [
+            {
+                txt: 'Use the text box',
+                size: 30,
+                align: 'left',
+                color: 'white',
+                font: 'Impact',
+                pos: { x: 50, y: 50 },
+                lineLength: null,
+            }
+        ],
+    }
+    return newMeme;
 }
 
-function updateCurrentgMeme(id) {
+function setCurrMemeImg(id) { 
     gMeme.selectedImgId = id;
 }
 function updateMemeText(text) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = text;
+    getSelectedLine().txt = text;
 }
 
 function getgMemeImg() {
@@ -148,28 +152,27 @@ function getMeme(canvasSize) {
 }
 
 function increaseTextSize() {
-    gMeme.lines[gMeme.selectedLineIdx].size++;
+    getSelectedLine().size++;
 }
 
 function decreaseTextSize() {
-    gMeme.lines[gMeme.selectedLineIdx].size--;
+    getSelectedLine().size--;
 }
 
 function changeTextPos(x, y) {
-    gMeme.lines[gMeme.selectedLineIdx].pos.x = x;
-    gMeme.lines[gMeme.selectedLineIdx].pos.y = y;
-    // console.log('hi', x ,gMeme.lines[gMeme.selectedLineIdx].pos.x);
+    var currLine = getSelectedLine();
+    currLine.pos.x = x;
+    currLine.pos.y = y;
 }
 
 function moveTextUp() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
+    getSelectedLine().pos.y -= 5;
 }
 function moveTextDown() {
-    gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
+    getSelectedLine().pos.y += 5;
 }
 
-function createNewLine(text = 'I never eat Falafel') {
-    var canvasMeasures = getCanvasMeasures();
+function createNewLine(text = 'I never eat Falafel', canvasMeasures) {
     var newLine = {
         txt: text,
         size: 30,
@@ -189,15 +192,14 @@ function createNewLine(text = 'I never eat Falafel') {
 function setCurrLine() {
     gMeme.selectedLineIdx++;
     if (gMeme.selectedLineIdx >= gMeme.lines.length) gMeme.selectedLineIdx = 0;
-    console.log('Line Selected: ', gMeme.selectedLineIdx);
 }
 
 function updateLineFont(font) {
-    gMeme.lines[gMeme.selectedLineIdx].font = font;
+    getSelectedLine().font = font;
 }
 
 function updateLineColor(color) {
-    gMeme.lines[gMeme.selectedLineIdx].color = color;
+    getSelectedLine().color = color;
 }
 // problem in here, maybe caused by canvas size changes ,FIXED (i think)
 function setLineLength(lineIdx, length) {
@@ -207,23 +209,17 @@ function setLineLength(lineIdx, length) {
 function isLineClicked(pos) {
     for (var i = 0; i < gMeme.lines.length; i++) {
         var currLine = gMeme.lines[i];
-        console.log('currLine length', currLine.lineLength);
-        console.log('currline pos x', currLine.pos.x);
         if (pos.x >= currLine.pos.x && pos.x < currLine.pos.x + currLine.lineLength && pos.y >= currLine.pos.y - currLine.size && pos.y <= currLine.pos.y) {
             console.log(true);
             gMeme.selectedLineIdx = i; // WATCHOUT
             return true;
-        } else {
-            console.log(false);
         }
     }
     return false;
 }
 
-
 // i could perhaps make it prettier get back to it later:
-function alignLines(side) {
-    var canvasMeasures = getCanvasMeasures(); //WATCHOUT
+function alignLines(side, canvasMeasures) {
     var xLocation;
     switch (side) {
         case 'left':
@@ -255,7 +251,6 @@ function mapKeyWords() {
         }, {});
         return map;
     }, {});
-    // console.log(gKeywords);
 }
 
 function getKeyWords() {

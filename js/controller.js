@@ -2,12 +2,12 @@
 
 var gElCanvas;
 var gCtx;
-var gAlign = 'center';
 var gIsClicked = false;
 var gCurrImage;
 var gSavedMemes;
 var gSearchBy;
 var gIsSearching = false;
+var gWordsRevealed
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 
@@ -52,8 +52,7 @@ function onDown(event) {
     console.log(pos);
     gIsClicked = isLineClicked(pos);
     if (gIsClicked) {
-        renderText(); // WATCHOUT completely negates the shadow mark effect
-        // markSelected(); // trying with borders
+        renderText(); // WATCHOUT 
         drawLineBorders();
         document.body.style.cursor = 'grabbing';
     } else renderText();
@@ -111,11 +110,10 @@ function renderImages() {
 }
 
 function openEditor(id) {
-    // console.log(id);
-    
+    setNewMeme();
     var elMain = document.querySelector('main');       ///////////////////////////
     elMain.style.display = 'none';                  //////////////////////////////
-    updateCurrentgMeme(id);
+    setCurrMemeImg(id);
     var elEditor = document.querySelector('.meme-editor');
     loadImage();
     drawImg();
@@ -141,7 +139,6 @@ function loadImage() {
 }
 function drawImg() {
     gCtx.drawImage(gCurrImage, 0, 0, gElCanvas.width, gElCanvas.height);
-    // initialText(); // WATCHOUT TRYING SOMETHING
 }
 
 function clearCanvas() {
@@ -172,16 +169,14 @@ function onMoveLine(isUp) {
 }
 
 function onNewLineInput() {
-    // document.querySelector('.lower-text').style.visibility = 'visible';
     document.querySelector('#upper-text').value = '';
-    createNewLine(); // WATCHOUT 
+    createNewLine(undefined, getCanvasMeasures()); // WATCHOUT 
     setCurrLine(); // WATCHOUT 
 }
 
 function onSwitchLine() {
     setCurrLine(); // WATCHOUT 
     renderText();
-    // markSelected(); // trying with borders
     drawLineBorders();
 }
 
@@ -193,19 +188,8 @@ function onSetColor(color) {
     updateLineColor(color);
     renderText();
 }
-function onAlignRight() {
-    gAlign = 'right';
-    alignLines(gAlign);
-    renderText();
-}
-function onAlignLeft() {
-    gAlign = 'left';
-    alignLines(gAlign);
-    renderText();
-}
-function onAlignCenter() {
-    gAlign = 'center';
-    alignLines(gAlign);
+function onAlignLines(alignment) {
+    alignLines(alignment, getCanvasMeasures());
     renderText();
 }
 
@@ -215,26 +199,18 @@ function onDeleteLine() {
 }
 
 function onDownloadImg(elAnchor) {
-    // gSavedMemes.push(getMeme()); // prototype
     elAnchor.href = gElCanvas.toDataURL('image/jpeg');
     gSavedMemes.push(elAnchor.href);
     saveToStorage('savedMemes', gSavedMemes);
 }
 
-
-
 // prototype:
 function initialText() {
     var meme = getMeme();
     for (var i = 0; i < meme.lines.length; i++) {
-        // console.log(gElCanvas.width, gElCanvas.height);
         setLineLength(i, gCtx.measureText(meme.lines[i].txt).width);
         var x = meme.lines[i].pos.x;
         var y = meme.lines[i].pos.y;
-        // console.log('x,y:', x, y);
-        // gCtx.direction = 'ltr';
-        // gCtx.textBaseline = 'middle';
-        // gCtx.textAlign = gAlign;
         gCtx.shadowBlur = 0;
         gCtx.lineWidth = 2;
         gCtx.strokeStyle = 'black';
@@ -244,38 +220,14 @@ function initialText() {
         gCtx.strokeText(meme.lines[i].txt, x, y);
     }
 }
-
-// prototype: 
+ 
 function drawLineBorders() {
-    var meme = getMeme();
-    meme.lines[meme.selectedLineIdx]
-    var x = meme.lines[meme.selectedLineIdx].pos.x;
-    var y = meme.lines[meme.selectedLineIdx].pos.y;
-    var width = meme.lines[meme.selectedLineIdx].lineLength;
-    var height = meme.lines[meme.selectedLineIdx].size;
-    console.log(x, y, width, height);
+    var selectedLine = getSelectedLine();
     gCtx.beginPath();
-    gCtx.rect(x, y, width, -height);
+    gCtx.rect(selectedLine.pos.x, selectedLine.pos.y, selectedLine.lineLength, -selectedLine.size);
     gCtx.strokeStyle = 'white';
     gCtx.stroke();
 }
-
-// not looking good gotta fix it if there is time
-//currently not in use:
-function markSelected() {
-    var meme = getMeme()
-    var x = meme.lines[meme.selectedLineIdx].pos.x;
-    var y = meme.lines[meme.selectedLineIdx].pos.y;
-    gCtx.shadowColor = "black";
-    gCtx.shadowBlur = 50;
-    gCtx.lineWidth = 2;
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = `${meme.lines[meme.selectedLineIdx].color}`;
-    gCtx.font = `${meme.lines[meme.selectedLineIdx].size}px Impact`;
-    gCtx.fillText(meme.lines[meme.selectedLineIdx].txt, x, y);
-    gCtx.strokeText(meme.lines[meme.selectedLineIdx].txt, x, y);
-}
-
 
 function onUpload(ev) {
     loadInputImage(ev, drawImg);
@@ -291,10 +243,7 @@ function loadInputImage(ev, drawImage) {
     }
     reader.readAsDataURL(ev.target.files[0]);
 }
-
-
-// need to figure out a way of allowing it to be edited , set opened meme as gMeme get back to it later figure out name = id cause it has none
-// update: dont think its possible to edit a made canvas pic
+// see if can display them when clicked
 function displaySavedMemes() {
     var elGallery = document.querySelector('.img-gallery');
     var strHtml = gSavedMemes.map(meme => {
@@ -320,19 +269,17 @@ function displayKeyWords() {
     for (var key in keywords) {
         strHTML += `<span style="font-size: calc(16px + ${keywords[key]}px);" data-trans="${key}" onclick="onIncreaseFont('${key}')">${key}</span>`;
     }
-    // strHTML += '<a onclick="revealKeyWords()">More</a>'
-    // console.log(strHTML);
     document.querySelector('.keywords').innerHTML = strHTML;
+    if (gWordsRevealed) onRevealKeyWords();
 }
-
 // REMINDER: i could set invisible in CSS to all spans except for like 4 and when a button is pressed it gives visible to all.
-
-function revealKeyWords(elAnchor) {
+// UPDATE: didnt work taking extra space and ruins design
+function onRevealKeyWords() {
+    gWordsRevealed = true;
     var elSpans = document.querySelectorAll('.search-bar .keywords span');
     elSpans.forEach(elSpan => {
         elSpan.classList.add('reveal');
     });
-    // elAnchor.style.display = 'none';
 }
 
 function onIncreaseFont(word) {
@@ -342,12 +289,9 @@ function onIncreaseFont(word) {
 }
 
 function getCanvasMeasures() {
-    console.log('hi measure canvas');
     if (window.innerWidth <= 850) {
-        // setCanvasMeasures();
         return { width: 250, height: 250 };
     }
-    // setCanvasMeasures();
     return { width: 500, height: 500 };
 }
 
@@ -369,7 +313,7 @@ function toggleMenu() {
 
 function onAddStickers(elEmoji) {
     console.log(elEmoji.innerText);
-    createNewLine(elEmoji.innerText);
+    createNewLine(elEmoji.innerText, getCanvasMeasures());
     setCurrLine();
     renderText();
 }
@@ -401,13 +345,12 @@ function onTranslate() {
     var elements = document.querySelectorAll('[data-trans]');
     elements.forEach(element => {
         var elDataTrans = element.dataset.trans;
-        // console.log('here' , element);
         if (element.nodeName === 'INPUT') element.placeholder = getTrans(elDataTrans);
         else element.innerText = getTrans(elDataTrans);
     });
 }
 
-function markHeadings(pressed) {
+function onMarkHeadings(pressed) {
     var elHeadingGallery = document.querySelector('.h-gallery');
     var elHeadingMemes = document.querySelector('.h-memes');
     if (pressed === 'gallery') {
