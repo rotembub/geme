@@ -7,7 +7,7 @@ var gCurrImage;
 var gSavedMemes;
 var gSearchBy;
 var gIsSearching = false;
-var gWordsRevealed
+var gWordsRevealed;
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend'];
 
 
@@ -223,6 +223,7 @@ function initialText() {
  
 function drawLineBorders() {
     var selectedLine = getSelectedLine();
+    gCtx.font = selectedLine.font;
     gCtx.beginPath();
     gCtx.rect(selectedLine.pos.x, selectedLine.pos.y, selectedLine.lineLength, -selectedLine.size);
     gCtx.strokeStyle = 'white';
